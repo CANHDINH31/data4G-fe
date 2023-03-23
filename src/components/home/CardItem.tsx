@@ -40,6 +40,14 @@ const WrapIcon = styled.div`
   position: absolute;
   bottom: 10px;
   right: 10px;
+  &::after {
+    top: 0;
+    right: 0;
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 40px;
+  }
 `;
 
 const Price = styled.div`

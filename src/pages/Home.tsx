@@ -22,7 +22,7 @@ const Home = (): JSX.Element => {
   const [offerCheck, setOfferCheck] = useState<string>("");
 
   const handleToggleFavourite = async (id: string) => {
-    if (!currentUser)
+    if (!currentUser?.name)
       return notification("warn", "Đăng nhập để sử dụng tính năng");
     try {
       const res = await toggleFavourite({
@@ -46,15 +46,17 @@ const Home = (): JSX.Element => {
   };
 
   useEffect(() => {
-    const getListFavourite = async () => {
-      try {
-        const res = await getUserInfo(currentUser?._id);
-        setListFavourite(res?.data?.listService);
-      } catch (error) {
-        notification("system");
-      }
-    };
-    currentUser ? getListFavourite() : setListFavourite([]);
+    if (currentUser?.name) {
+      const getListFavourite = async () => {
+        try {
+          const res = await getUserInfo(currentUser?._id);
+          setListFavourite(res?.data?.listService);
+        } catch (error) {
+          notification("system");
+        }
+      };
+      currentUser ? getListFavourite() : setListFavourite([]);
+    }
   }, [currentUser]);
 
   useEffect(() => {

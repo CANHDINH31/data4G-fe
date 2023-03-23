@@ -7,6 +7,13 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .slick-dots {
+    display: none !important;
+    justify-content: center;
+  }
+}
+
 /* Customize the dots */
 .slick-dots li button:before {
   margin-top: 10px;
