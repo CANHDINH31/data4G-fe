@@ -12,7 +12,8 @@ Assumes you have basic knowledge of JavaScript and React. If you’ve never writ
 - [Typescript](https://www.typescriptlang.org/)
 - [Material UI V5](https://mui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
-- [Firebase](https://firebase.google.com/docs/web/setup?hl=vi)
+- [React Redux](https://react-redux.js.org/)
+- [React Hook Form)(https://react-hook-form.com/)
 - [See more](package.json)
 
 ## Getting Started
