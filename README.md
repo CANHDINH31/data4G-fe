@@ -11,7 +11,7 @@ Assumes you have basic knowledge of JavaScript and React. If you’ve never writ
 
 - [Typescript](https://www.typescriptlang.org/)
 - [Material UI V5](https://mui.com/)
-- [React Icons](
+- [React Icons](https://react-icons.github.io/react-icons/)
 - [Firebase](https://firebase.google.com/docs/web/setup?hl=vi)
 - [See more](package.json)
 
