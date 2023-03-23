@@ -13,7 +13,7 @@ Assumes you have basic knowledge of JavaScript and React. If you’ve never writ
 - [Material UI V5](https://mui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [React Redux](https://react-redux.js.org/)
-- [React Hook Form)(https://react-hook-form.com/)
+- [React Hook Form](https://react-hook-form.com/)
 - [See more](package.json)
 
 ## Getting Started
