@@ -132,7 +132,7 @@ const MobileMenu = (): JSX.Element => {
               padding={"0 15px"}
               marginY={4}
             >
-              {currentUser ? (
+              {currentUser?.name ? (
                 <>
                   <Box display={"flex"} alignItems="center" gap={"10px"}>
                     <ImageUser

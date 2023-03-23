@@ -108,7 +108,7 @@ const MainMenu = (): JSX.Element => {
             ))}
           </ListMenu>
 
-          {currentUser ? (
+          {currentUser?.name ? (
             <InfoUser>
               <ImageUser
                 src={currentUser?.image ? currentUser?.image : AvatarImg}
