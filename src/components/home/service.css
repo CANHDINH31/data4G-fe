@@ -1,0 +1,83 @@
+.slick-list {
+  padding: 1px !important;
+}
+
+.slick-dots {
+  display: flex;
+  justify-content: center;
+}
+
+/* Customize the dots */
+.slick-dots li button:before {
+  margin-top: 10px;
+  content: "";
+  width: 12px;
+  height: 8px;
+  background: #ee0033;
+  border-radius: 3px;
+  display: block;
+}
+
+/* Customize the active dot */
+.slick-dots li.slick-active button:before {
+  background-color: #11aca5;
+}
+
+/* CSS BUTTON PREV AND NEXT */
+
+.slick-slider:hover .slick-prev,
+.slick-slider:hover .slick-next {
+  display: block !important;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: none !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #ee0033;
+  border-left: 2px solid #ee0033;
+  transform: rotate(-45deg);
+}
+
+.slick-prev {
+  left: -20px;
+}
+
+.slick-next {
+  right: -20px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #f1f1f1;
+  border: 1px solid red;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #f1f1f1;
+  border: 1px solid #ee0033;
+}
+
+.slick-next:before {
+  transform: rotate(135deg);
+}
