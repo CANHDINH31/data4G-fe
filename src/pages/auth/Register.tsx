@@ -14,7 +14,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
 import { registerAccount } from "@/utils/api/api";
 import { BiShow, BiHide } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -71,6 +71,10 @@ const Register = () => {
       notification("system");
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container>

@@ -226,7 +226,10 @@ const MobileMenu = (): JSX.Element => {
                   smooth={true}
                   offset={-200}
                   duration={1000}
-                  onClick={() => setIsOpenMenu(false)}
+                  onClick={() => {
+                    setIsOpenMenu(false);
+                    navigate("/");
+                  }}
                 >
                   {menu.title}
                 </ScrollLink>

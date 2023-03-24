@@ -18,7 +18,7 @@ import { auth, provider } from "@/utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { BiHide, BiShow } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -74,6 +74,11 @@ const Login = () => {
       notification("system");
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       <Box display="flex" gap={20}>
