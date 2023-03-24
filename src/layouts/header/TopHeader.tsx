@@ -2,8 +2,9 @@ import styled from "styled-components";
 import LogoImage from "@/assets/image/top-header-logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Color } from "@/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
+import { KeyboardEvent, useState } from "react";
 
 const WrapContainer = styled.div`
   background-color: ${Color.BG_SECONDARY};
@@ -42,6 +43,15 @@ const LogoSearch = styled.div`
 `;
 
 const TopHeader = (): JSX.Element => {
+  const navigate = useNavigate();
+  const [key, setKey] = useState<string>("");
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && key) {
+      navigate("/?key=" + key);
+      setKey("");
+    }
+  };
   return (
     <WrapContainer>
       <Container>
@@ -52,12 +62,17 @@ const TopHeader = (): JSX.Element => {
             </LogoHeader>
           </Link>
 
-          {/* <SearchHeader>
+          <SearchHeader>
             <LogoSearch>
               <AiOutlineSearch />
             </LogoSearch>
-            <input placeholder="Tìm kiếm ..." />
-          </SearchHeader> */}
+            <input
+              placeholder="Tìm kiếm ..."
+              value={key}
+              onChange={e => setKey(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </SearchHeader>
         </TopHeaderContainer>
       </Container>
     </WrapContainer>

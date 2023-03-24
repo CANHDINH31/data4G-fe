@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import LogoImage from "@/assets/image/top-header-logo.png";
-import { Paper, Box, Modal, Fade, Button, Typography } from "@mui/material";
+import {
+  Paper,
+  Box,
+  Modal,
+  Fade,
+  Button,
+  Typography,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { BsList } from "react-icons/bs";
+import { BsListUl, BsSearch } from "react-icons/bs";
 import { Color, RootState } from "@/types";
 import { useState } from "react";
 import { listMenu } from "@/utils/configs";
@@ -12,9 +21,11 @@ import { logout } from "@/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FiLogOut } from "react-icons/fi";
 import { FaTimes } from "react-icons/fa";
-import AvatarImg from "@/assets/image/viettel.jpg";
+import AvatarImg from "@/assets/image/viettel.png";
+import { KeyboardEvent } from "react";
 
 const WrapContent = styled(Paper)`
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,23 +43,25 @@ const MenuIcon = styled.div`
   left: 10px;
   transform: translateY(-50%);
   cursor: pointer;
+  padding: 10px;
   & svg {
-    color: #c0c0c0;
     font-size: 25px;
-    border: 1px solid #c0c0c0;
-    border-radius: 50%;
-    padding: 4px;
-    &:hover {
-      background-color: ${Color.PRIMARY};
-      color: #fff;
-      border: none;
-    }
   }
+`;
+
+const MenuIconRight = styled(MenuIcon)`
+  left: unset;
+  right: 10px;
 `;
 
 const LogoHeader = styled.div`
   cursor: pointer;
   padding: 30px 0;
+  img {
+    display: block;
+    height: 21px;
+    object-fit: contain;
+  }
 `;
 
 const ListMenu = styled(Box)`
@@ -89,6 +102,9 @@ const MobileMenu = (): JSX.Element => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: RootState) => state.user);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+
+  const [searchParam, setSearchParam] = useState<string>("");
 
   const hanldeLogout = (): void => {
     notification("success", "Tài khoản đã được đăng xuất");
@@ -96,18 +112,50 @@ const MobileMenu = (): JSX.Element => {
     setIsOpenMenu(false);
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      searchParam && navigate("/?key=" + searchParam);
+      !searchParam && notification("warn", "Nhập từ khóa để tìm kiếm dịch vụ");
+      setIsOpenSearch(false);
+      setSearchParam("");
+    }
+  };
+
   return (
     <>
       <WrapContent elevation={3}>
         <MenuIcon onClick={() => setIsOpenMenu(true)}>
-          <BsList />
+          <BsListUl />
         </MenuIcon>
         <Link to="/">
           <LogoHeader>
             <img src={LogoImage} alt="logo-viettel" />
           </LogoHeader>
         </Link>
+        <MenuIconRight onClick={() => setIsOpenSearch(!isOpenSearch)}>
+          <BsSearch />
+        </MenuIconRight>
       </WrapContent>
+      {isOpenSearch && (
+        <Box p={2}>
+          <TextField
+            placeholder="Tìm kiếm"
+            size="small"
+            fullWidth
+            value={searchParam}
+            onChange={e => setSearchParam(e.target.value)}
+            onKeyDown={handleKeyDown}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <BsSearch />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+      )}
+
       <Modal
         open={isOpenMenu}
         onClose={() => setIsOpenMenu(false)}
