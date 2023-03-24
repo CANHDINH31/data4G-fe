@@ -41,12 +41,12 @@ const WrapIcon = styled.div`
   bottom: 10px;
   right: 10px;
   &::after {
-    top: -17px;
-    right: -20px;
+    top: -36px;
+    right: -36px;
     position: absolute;
     content: "";
-    width: 120px;
-    height: 60px;
+    width: 170px;
+    height: 80px;
   }
 `;
 
