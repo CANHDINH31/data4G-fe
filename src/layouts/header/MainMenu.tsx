@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button, Container, Typography, Box, Paper } from "@mui/material";
 import { Color, RootState, SignInResponse } from "@/types";
 import { FiLogOut } from "react-icons/fi";
-import { FcManager } from "react-icons/fc";
+import { FcManager, FcLike } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -131,7 +131,16 @@ const MainMenu = (): JSX.Element => {
                     </Box>
                   </ListInfoItem>
                 )}
-
+                <ListInfoItem onClick={() => navigate("/like")}>
+                  <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+                    <Box display={"flex"} alignItems={"center"}>
+                      <FcLike />
+                    </Box>
+                    <Typography variant="subtitle1">
+                      Các gói yêu thích
+                    </Typography>
+                  </Box>
+                </ListInfoItem>
                 <ListInfoItem onClick={hanldeLogout}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>

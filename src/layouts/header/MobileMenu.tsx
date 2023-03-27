@@ -71,6 +71,7 @@ const ListMenu = styled(Box)`
   border: none;
   height: 100vh;
   width: 60vw;
+  max-width: 300px;
   padding: 30px 0;
 `;
 
@@ -242,7 +243,7 @@ const MobileMenu = (): JSX.Element => {
                   variant="contained"
                   color="error"
                   startIcon={<FiLogOut />}
-                  fullWidth
+                  sx={{ width: "80%" }}
                 >
                   Đăng xuất
                 </Button>

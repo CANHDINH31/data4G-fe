@@ -3,6 +3,8 @@ import Home from "@/pages/Home";
 import Service from "@/pages/Service";
 import Register from "@/pages/auth/Register";
 import Login from "@/pages/auth/Login";
+import Like from "@/pages/Like";
+import NotFound from "@/pages/NotFound";
 
 interface Router {
   path: string;
@@ -14,6 +16,8 @@ const listRouter: Router[] = [
   { path: "/service/:id?", component: <Service /> },
   { path: "/register", component: <Register /> },
   { path: "/login", component: <Login /> },
+  { path: "/like", component: <Like /> },
+  { path: "*", component: <NotFound /> },
 ];
 
 export const renderRouter = () => {
