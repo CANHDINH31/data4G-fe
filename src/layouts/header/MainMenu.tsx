@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { listMenu } from "@/utils/configs";
 import { notification } from "@/utils/helper";
-import AvatarImg from "@/assets/image/viettel.jpg";
+import AvatarImg from "@/assets/image/vietnam.png";
 
 const WrapContainer = styled.div``;
 
@@ -131,7 +131,7 @@ const MainMenu = (): JSX.Element => {
                     </Box>
                   </ListInfoItem>
                 )}
-                <ListInfoItem onClick={() => navigate("/like")}>
+                {/* <ListInfoItem onClick={() => navigate("/like")}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>
                       <FcLike />
@@ -140,7 +140,7 @@ const MainMenu = (): JSX.Element => {
                       Các gói yêu thích
                     </Typography>
                   </Box>
-                </ListInfoItem>
+                </ListInfoItem> */}
                 <ListInfoItem onClick={hanldeLogout}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>

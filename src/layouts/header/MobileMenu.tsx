@@ -21,7 +21,7 @@ import { logout } from "@/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FiLogOut } from "react-icons/fi";
 import { FaTimes } from "react-icons/fa";
-import AvatarImg from "@/assets/image/viettel.png";
+import AvatarImg from "@/assets/image/vietnam.png";
 import { KeyboardEvent } from "react";
 
 const WrapContent = styled(Paper)`

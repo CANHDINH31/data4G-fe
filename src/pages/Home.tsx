@@ -10,6 +10,7 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import {
   getListCategory,
@@ -25,13 +26,19 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 import { useLocation, useNavigate } from "react-router-dom";
 import CardItem from "@/components/home/CardItem";
 import { BiSearch } from "react-icons/bi";
+import { BsArrowUpCircle } from "react-icons/bs";
 import { KeyboardEvent } from "react";
 import NoResult from "@/assets/image/no.png";
+import * as Scroll from "react-scroll";
 
 const Home = (): JSX.Element => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const paramValue = searchParams.get("key");
+
+  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+
+  let scroll = Scroll.animateScroll;
 
   const navigate = useNavigate();
 
@@ -46,6 +53,8 @@ const Home = (): JSX.Element => {
   const [listResult, setListResult] = useState<typeService[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [showToTop, setShowToTop] = useState<boolean>(false);
 
   const handleToggleFavourite = async (id: string) => {
     if (!currentUser?.name)
@@ -146,7 +155,19 @@ const Home = (): JSX.Element => {
         notification("system");
       }
     };
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowToTop(true);
+      } else {
+        setShowToTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
     getInfoStruct();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -244,6 +265,19 @@ const Home = (): JSX.Element => {
               </Box>
             </Stack>
           )}
+        </Box>
+      )}
+      {isAboveMediumScreens && showToTop && (
+        <Box
+          position="fixed"
+          bottom="80px"
+          right="0px"
+          component="a"
+          onClick={() => scroll.scrollToTop()}
+          sx={{ cursor: "pointer" }}
+          padding={3}
+        >
+          <BsArrowUpCircle fontSize={40} />
         </Box>
       )}
     </Container>
