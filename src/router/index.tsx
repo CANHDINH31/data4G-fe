@@ -5,6 +5,7 @@ import Register from "@/pages/auth/Register";
 import Login from "@/pages/auth/Login";
 import Like from "@/pages/Like";
 import NotFound from "@/pages/NotFound";
+import UpdateInfo from "@/pages/auth/UpdateInfo";
 
 interface Router {
   path: string;
@@ -17,6 +18,7 @@ const listRouter: Router[] = [
   { path: "/register", component: <Register /> },
   { path: "/login", component: <Login /> },
   { path: "/like", component: <Like /> },
+  { path: "/update-info", component: <UpdateInfo /> },
   { path: "*", component: <NotFound /> },
 ];
 

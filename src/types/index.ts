@@ -20,7 +20,9 @@ export interface RootState {
       name: string;
       isAdmin: boolean;
       image: string;
+      phone?: string;
       listService: typeService[];
+      fromGoogle?: boolean;
     };
   };
 }

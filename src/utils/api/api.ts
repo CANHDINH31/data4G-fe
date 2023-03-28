@@ -43,6 +43,18 @@ const getUserInfo = async (id: string): Promise<any> => {
   }
 };
 
+const updateInfoUser = async (
+  id: string,
+  payloads: { name: string; phone?: string; password?: string }
+): Promise<any> => {
+  try {
+    const res = await API.put("/users/update-info/" + id, payloads);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
 const toggleFavourite = async (payload: {
   idUser: string;
   idService: string;
@@ -202,6 +214,7 @@ export {
   registerAccount,
   loginAccount,
   getUserInfo,
+  updateInfoUser,
   toggleFavourite,
   createCategory,
   getListCategory,

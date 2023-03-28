@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button, Container, Typography, Box, Paper } from "@mui/material";
-import { Color, RootState, SignInResponse } from "@/types";
+import { Color, RootState } from "@/types";
 import { FiLogOut } from "react-icons/fi";
-import { FcManager, FcLike } from "react-icons/fc";
+import { FcManager, FcLike, FcEditImage } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -141,6 +141,17 @@ const MainMenu = (): JSX.Element => {
                     </Typography>
                   </Box>
                 </ListInfoItem> */}
+                <ListInfoItem onClick={() => navigate("/update-info")}>
+                  <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+                    <Box display={"flex"} alignItems={"center"}>
+                      <FcEditImage />
+                    </Box>
+                    <Typography variant="subtitle1">
+                      Cập nhật thông tin
+                    </Typography>
+                  </Box>
+                </ListInfoItem>
+
                 <ListInfoItem onClick={hanldeLogout}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>

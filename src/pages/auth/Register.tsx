@@ -36,12 +36,9 @@ const Register = () => {
 
   const validateRePassword = (value: string) => {
     if (value !== password) {
-      setError("rePassword", {
-        type: "validate",
-        message: "Mật khẩu nhập lại không khớp",
-      });
-    } else {
-      clearErrors("rePassword");
+      if (value !== password) {
+        return "Mật khẩu nhập lại không khớp";
+      }
     }
   };
 
@@ -168,9 +165,9 @@ const Register = () => {
                   fullWidth
                   {...register("rePassword", {
                     required: "Trường không này không được để trống",
+                    validate: validateRePassword,
                   })}
                   type={!isShowRePassword ? "password" : "text"}
-                  onChange={e => validateRePassword(e.target.value)}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment

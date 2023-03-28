@@ -32,6 +32,13 @@
 
 /* CSS BUTTON PREV AND NEXT */
 
+@media (max-width: 768px) {
+  .slick-slider .slick-prev,
+  .slick-slider .slick-next {
+    display: block !important;
+  }
+}
+
 .slick-slider:hover .slick-prev,
 .slick-slider:hover .slick-next {
   display: block !important;

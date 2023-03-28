@@ -23,6 +23,7 @@ import { FiLogOut } from "react-icons/fi";
 import { FaTimes } from "react-icons/fa";
 import AvatarImg from "@/assets/image/vietnam.png";
 import { KeyboardEvent } from "react";
+import { FcEditImage } from "react-icons/fc";
 
 const WrapContent = styled(Paper)`
   height: 50px;
@@ -237,17 +238,30 @@ const MobileMenu = (): JSX.Element => {
               </MenuItem>
             ))}
             {currentUser && (
-              <Box padding={"0 15px"} mt={4}>
-                <Button
-                  onClick={hanldeLogout}
-                  variant="contained"
-                  color="error"
-                  startIcon={<FiLogOut />}
-                  sx={{ width: "80%" }}
+              <>
+                <MenuItem
+                  onClick={() => {
+                    setIsOpenMenu(false);
+                    navigate("/update-info");
+                  }}
                 >
-                  Đăng xuất
-                </Button>
-              </Box>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <FcEditImage />
+                    Cập nhật tài khoản
+                  </Box>
+                </MenuItem>
+                <Box padding={"0 15px"} mt={4}>
+                  <Button
+                    onClick={hanldeLogout}
+                    variant="contained"
+                    color="error"
+                    startIcon={<FiLogOut />}
+                    sx={{ width: "80%" }}
+                  >
+                    Đăng xuất
+                  </Button>
+                </Box>
+              </>
             )}
           </ListMenu>
         </Fade>
