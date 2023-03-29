@@ -131,7 +131,7 @@ const MainMenu = (): JSX.Element => {
                     </Box>
                   </ListInfoItem>
                 )}
-                {/* <ListInfoItem onClick={() => navigate("/like")}>
+                <ListInfoItem onClick={() => navigate("/like")}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>
                       <FcLike />
@@ -140,7 +140,7 @@ const MainMenu = (): JSX.Element => {
                       Các gói yêu thích
                     </Typography>
                   </Box>
-                </ListInfoItem> */}
+                </ListInfoItem>
                 <ListInfoItem onClick={() => navigate("/update-info")}>
                   <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Box display={"flex"} alignItems={"center"}>

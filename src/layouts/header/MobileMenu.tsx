@@ -23,7 +23,7 @@ import { FiLogOut } from "react-icons/fi";
 import { FaTimes } from "react-icons/fa";
 import AvatarImg from "@/assets/image/vietnam.png";
 import { KeyboardEvent } from "react";
-import { FcEditImage } from "react-icons/fc";
+import { FcEditImage, FcLike } from "react-icons/fc";
 
 const WrapContent = styled(Paper)`
   height: 50px;
@@ -239,6 +239,17 @@ const MobileMenu = (): JSX.Element => {
             ))}
             {currentUser && (
               <>
+                <MenuItem
+                  onClick={() => {
+                    setIsOpenMenu(false);
+                    navigate("/like");
+                  }}
+                >
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <FcLike />
+                    Danh mục yêu thích
+                  </Box>
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     setIsOpenMenu(false);
