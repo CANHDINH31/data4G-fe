@@ -55,12 +55,30 @@ const updateInfoUser = async (
   }
 };
 
+const searchUser = async (query: string): Promise<any> => {
+  try {
+    const res = await API.get("/users/search-user?query=" + query);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
 const toggleFavourite = async (payload: {
   idUser: string;
   idService: string;
 }): Promise<any> => {
   try {
     const res = await API.post("/users/toggle-favourite", payload);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+const deleteUser = async (payload: { listId: Array<string> }) => {
+  try {
+    const res = await API.post("/users/delete-user", payload);
     return res;
   } catch (error) {
     return error;
@@ -214,6 +232,8 @@ export {
   registerAccount,
   loginAccount,
   getUserInfo,
+  searchUser,
+  deleteUser,
   updateInfoUser,
   toggleFavourite,
   createCategory,

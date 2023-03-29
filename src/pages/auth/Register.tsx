@@ -26,8 +26,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    setError,
-    clearErrors,
     reset,
     setValue,
   } = useForm();

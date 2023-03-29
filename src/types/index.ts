@@ -42,6 +42,7 @@ export type typeCategory = {
 
 export type typeUser = {
   _id: string;
+  id?: string;
   email: string;
   name: string;
   isAdmin: boolean;
