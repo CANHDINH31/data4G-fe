@@ -47,6 +47,9 @@ export type typeUser = {
   name: string;
   isAdmin: boolean;
   image: string;
+  password?: string;
+  fromGoogle?: boolean;
+  phone?: string;
   listService: typeService[];
 } | null;
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -11,13 +11,13 @@ import {
   DialogActions,
   IconButton,
   Typography,
-  TextareaAutosize,
-  Select,
-  MenuItem,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  FormLabel,
 } from "@mui/material";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import {
-  AiOutlineUnorderedList,
   AiOutlineSearch,
   AiOutlineFolderAdd,
   AiOutlineDelete,
@@ -25,14 +25,13 @@ import {
   AiOutlineClose,
 } from "react-icons/ai";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Color, typeUser } from "@/types";
 import {
-  deleteService,
   deleteUser,
   registerAccount,
   searchUser,
-  updateService,
+  updateInfoUser,
 } from "@/utils/api/api";
 import { notification } from "@/utils/helper";
 
@@ -69,29 +68,25 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-const TextAreaCustom = styled(TextareaAutosize)`
-  width: 25vw;
-  border: none;
-  resize: none;
-  border-bottom: 1px solid green;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4375em;
-  letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  padding: 0 14px;
-  &:focus {
-    border-bottom: 1px solid #1976d2;
-  }
-`;
-
 const UserManagement = () => {
   const columns: GridColDef[] = [
     { field: "id", headerName: "Chỉ mục", width: 100 },
     { field: "email", headerName: "Email", width: 250 },
-    { field: "name", headerName: "Họ tên", width: 250 },
-    { field: "phone", headerName: "Số điện thoại", width: 200 },
+    { field: "name", headerName: "Họ tên", width: 200 },
+    { field: "phone", headerName: "Số điện thoại", width: 150 },
+    {
+      field: "",
+      headerName: "Loại tài khoản",
+      width: 150,
+      renderCell: params => (
+        <Typography
+          variant="subtitle2"
+          color={params.row.fromGoogle ? "red" : ""}
+        >
+          {params.row.fromGoogle ? "Google" : "Thường"}
+        </Typography>
+      ),
+    },
     {
       field: "setting",
       headerName: "Chức năng",
@@ -139,7 +134,17 @@ const UserManagement = () => {
     handleSubmit: handleSubmitEdit,
     formState: { errors: editErrors },
     setValue,
-  } = useForm<{ id: string; title: string; price: string; content: string }>();
+    control,
+    getValues,
+  } = useForm<{
+    id?: string;
+    email: string;
+    password: string;
+    name: string;
+    phone?: string;
+    isAdmin?: boolean;
+    fromGoogle?: boolean;
+  }>();
 
   const {
     reset: resetSearch,
@@ -153,14 +158,6 @@ const UserManagement = () => {
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] =
     useState<boolean>(false);
   const [listUser, setListUser] = useState<typeUser[]>([]);
-  const [listService, setListService] = useState<
-    Array<{
-      id: string;
-      title: string;
-      price: string;
-      content: string;
-    }>
-  >([]);
   const [listIdDelete, setListIdDelete] = useState<Array<string>>([]);
 
   //ADD USER
@@ -201,54 +198,49 @@ const UserManagement = () => {
   };
 
   // EDIT SERVICE
-  const handleCloseEditService = (): void => {
+  const handleCloseEditUser = (): void => {
     setIsOpenDialogEdit(false);
     resetEdit();
   };
 
   const handleOpenDialogEdit = (id: string) => {
     setIsOpenDialogEdit(true);
-    const editService = listService.find(
-      (service: {
-        id: string;
-        title: string;
-        price: string;
-        content: string;
-      }) => service.id === id
-    );
-    if (editService) {
-      setValue("id", editService.id);
-      setValue("title", editService.title);
-      setValue("price", editService.price);
-      setValue("content", editService.content);
+    const editUser = listUser.find(user => user && user.id === id);
+    if (editUser) {
+      setValue("id", editUser.id);
+      setValue("email", editUser.email);
+      setValue("name", editUser.name);
+      setValue("phone", editUser.phone as string);
+      setValue("password", editUser.password as string);
+      setValue("fromGoogle", editUser.fromGoogle);
+      setValue("isAdmin", editUser.isAdmin);
     }
   };
 
-  const handleEditService: SubmitHandler<{
-    id: string;
-    title: string;
-    price: string;
-    content: string;
+  const handleEditUser: SubmitHandler<{
+    email?: string;
+    name?: string;
+    password?: string;
+    phone?: string;
+    fromGoogle?: boolean | string;
+    isAdmin?: boolean | string;
   }> = async data => {
-    try {
-      const res = (await updateService(data.id, {
-        title: data.title,
-        price: data.price,
-        content: data.content,
-      })) as {
-        data: {
-          message: string;
-        };
-      };
-      const newListService = listService.map(service => {
-        if (service.id === data.id) {
-          return data;
-        }
-        return service;
-      });
-      setListService(newListService);
-      handleCloseEditService();
+    const isAdmin =
+      data.isAdmin === true || data.isAdmin === "true" ? true : false;
+    const newData = {
+      ...data,
+      isAdmin,
+    };
+    const res = await updateInfoUser(getValues("id") as string, newData);
+    if (res.data.status === 200) {
       notification("success", res.data.message);
+      handleCloseEditUser();
+      resetEdit();
+      setListUser([]);
+    } else {
+      notification("error", res.data.message);
+    }
+    try {
     } catch (error) {
       notification("system");
     }
@@ -517,74 +509,142 @@ const UserManagement = () => {
 
       {/* DIALOG EDIT */}
       <BootstrapDialog
-        onClose={handleCloseEditService}
+        onClose={handleCloseEditUser}
         aria-labelledby="customized-dialog-title"
         open={isOpenDialogEdit}
       >
-        <form onSubmit={handleSubmitEdit(handleEditService)}>
+        <form onSubmit={handleSubmitEdit(handleEditUser)}>
           <BootstrapDialogTitle
             id="customized-dialog-title"
-            onClose={handleCloseEditService}
+            onClose={handleCloseEditUser}
           >
             Cập nhật người dùng
           </BootstrapDialogTitle>
           <DialogContent dividers>
             <Box mt={2}>
               <TextField
-                label="Tên dịch vụ"
+                label="Họ tên"
                 sx={{ width: "25vw" }}
                 size="small"
-                {...registerEdit("title", { required: true })}
+                {...registerEdit("name", {
+                  required: "Trường không này không được để trống",
+                })}
               />
-              {editErrors.title && (
+              {editErrors.name && (
                 <Typography
                   mt={2}
                   variant="subtitle2"
                   sx={{ color: `${Color.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {editErrors.name.message}
                 </Typography>
               )}
             </Box>
             <Box mt={2}>
               <TextField
-                type="text"
-                label="Giá dịch vụ"
+                disabled
+                label="Gmail"
                 sx={{ width: "25vw" }}
                 size="small"
-                {...registerEdit("price", { required: true })}
+                {...registerEdit("email", {
+                  required: "Trường không này không được để trống",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Email không hợp lệ",
+                  },
+                })}
               />
-              {editErrors.price && (
+              {editErrors.email && (
                 <Typography
                   mt={2}
                   variant="subtitle2"
                   sx={{ color: `${Color.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {editErrors.email.message}
                 </Typography>
               )}
             </Box>
             <Box mt={2}>
-              <TextAreaCustom
-                placeholder="Nhập nội dung dịch vụ"
-                minRows={7}
-                {...registerEdit("content", { required: true })}
+              <TextField
+                label="Số điện thoại"
+                sx={{ width: "25vw" }}
+                size="small"
+                {...registerEdit("phone", {
+                  pattern: {
+                    value: /^0[35789]\d{8}$/,
+                    message: "Số điện thoại không hợp lệ",
+                  },
+                })}
               />
-              {editErrors.content && (
+              {editErrors.phone && (
                 <Typography
                   mt={2}
                   variant="subtitle2"
                   sx={{ color: `${Color.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {editErrors.phone.message}
                 </Typography>
               )}
             </Box>
+            {!getValues("fromGoogle") && (
+              <Box mt={2}>
+                <TextField
+                  label="Mật khẩu mới"
+                  sx={{ width: "25vw" }}
+                  size="small"
+                  {...registerEdit("password")}
+                />
+                {addErrors.password && (
+                  <Typography
+                    mt={2}
+                    variant="subtitle2"
+                    sx={{ color: `${Color.PRIMARY}` }}
+                  >
+                    {addErrors.password.message}
+                  </Typography>
+                )}
+              </Box>
+            )}
+
+            <Box mt={2}>
+              <FormLabel>Phân quyền: </FormLabel>
+              <Controller
+                name="isAdmin"
+                control={control}
+                defaultValue={getValues("isAdmin")}
+                render={({ field }) => (
+                  <RadioGroup
+                    row
+                    value={field.value?.toString()}
+                    onChange={e => field.onChange(e.target.value)}
+                  >
+                    <FormControlLabel
+                      value={"true"}
+                      control={<Radio />}
+                      label="Admin"
+                    />
+                    <FormControlLabel
+                      value={"false"}
+                      control={<Radio />}
+                      label="User"
+                    />
+                  </RadioGroup>
+                )}
+              />
+            </Box>
+            {getValues("fromGoogle") && (
+              <Box mt={2}>
+                <Typography color="red" fontSize={11}>
+                  Lưu ý: tài khoản này đăng kí qua Google, nên không cập nhật
+                  được mật khẩu
+                </Typography>
+              </Box>
+            )}
           </DialogContent>
           <DialogActions>
             <Button
               autoFocus
-              onClick={handleCloseEditService}
+              onClick={handleCloseEditUser}
               size="small"
               variant="contained"
               color="error"

@@ -45,7 +45,14 @@ const getUserInfo = async (id: string): Promise<any> => {
 
 const updateInfoUser = async (
   id: string,
-  payloads: { name: string; phone?: string; password?: string }
+  payloads: {
+    email?: string;
+    name?: string;
+    password?: string;
+    phone?: string;
+    fromGoogle?: boolean | string;
+    isAdmin?: boolean | string;
+  }
 ): Promise<any> => {
   try {
     const res = await API.put("/users/update-info/" + id, payloads);

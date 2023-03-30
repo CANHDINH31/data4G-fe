@@ -57,7 +57,7 @@ const UpdateInfo = () => {
         setValue("password", "");
         setValue("rePassword", "");
       } else {
-        notification("system");
+        notification("error", res.data.message);
       }
     } catch (error) {
       notification("system");
@@ -220,6 +220,14 @@ const UpdateInfo = () => {
                   </Box>
                 )}
               </Box>
+              {currentUser?.fromGoogle && (
+                <Box>
+                  <Typography color="red" fontSize={11}>
+                    Lưu ý: tài khoản này đăng kí qua Google, nên không cập nhật
+                    được mật khẩu
+                  </Typography>
+                </Box>
+              )}
             </Box>
             <Box mt={4}>
               <Button variant="contained" fullWidth size="small" type="submit">

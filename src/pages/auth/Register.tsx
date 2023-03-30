@@ -60,7 +60,6 @@ const Register = () => {
         navigate("/login");
       } else {
         notification("error", res.data.message);
-        setValue("email", "");
       }
     } catch (error) {
       notification("system");
