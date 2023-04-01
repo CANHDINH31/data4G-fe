@@ -354,14 +354,6 @@ const UserManagement = () => {
             <DataGrid
               rows={listUser}
               columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 10,
-                  },
-                },
-              }}
-              pageSizeOptions={[10]}
               checkboxSelection
               disableRowSelectionOnClick
               onRowSelectionModelChange={(
@@ -374,7 +366,6 @@ const UserManagement = () => {
               }}
               rowSelectionModel={listIdDelete}
             />
-
             <Box mt={2} display="flex" justifyContent="center" gap="10px">
               {listIdDelete?.length > 1 && (
                 <Button
