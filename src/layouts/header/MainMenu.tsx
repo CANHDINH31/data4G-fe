@@ -94,16 +94,8 @@ const MainMenu = (): JSX.Element => {
         <WrapListMenu>
           <ListMenu>
             {listMenu?.map(menu => (
-              <MenuItem key={menu.id}>
-                <ScrollLink
-                  to={menu.id}
-                  smooth={true}
-                  offset={-200}
-                  duration={1000}
-                  onClick={() => navigate("/")}
-                >
-                  {menu.title}
-                </ScrollLink>
+              <MenuItem key={menu.id} onClick={() => navigate("/")}>
+                {menu.title}
               </MenuItem>
             ))}
           </ListMenu>

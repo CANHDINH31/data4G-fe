@@ -1,5 +1,5 @@
 import { getStructre } from "@/utils/api/api";
-import { notification } from "@/utils/helper";
+import { getInfoStruct, notification } from "@/utils/helper";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,21 +22,7 @@ const NotFound = () => {
   const [takeCareGuest, setTakeCareGuest] = useState<string>("");
 
   useEffect(() => {
-    const getInfoStruct = async () => {
-      try {
-        const res = (await getStructre()) as {
-          data: {
-            data: {
-              takeCareGuest: string;
-            };
-          };
-        };
-        setTakeCareGuest(res.data.data.takeCareGuest);
-      } catch (error) {
-        notification("system");
-      }
-    };
-    getInfoStruct();
+    getInfoStruct(undefined, undefined, undefined, setTakeCareGuest);
   }, []);
   return (
     <Container>

@@ -4,8 +4,8 @@ import NoResult from "@/assets/image/no.png";
 import CardItem from "@/components/home/CardItem";
 import { useSelector } from "react-redux";
 import { RootState, typeService } from "@/types";
-import { notification } from "@/utils/helper";
-import { getStructre, getUserInfo, toggleFavourite } from "@/utils/api/api";
+import { getInfoStruct, notification } from "@/utils/helper";
+import { getUserInfo, toggleFavourite } from "@/utils/api/api";
 
 const Like = () => {
   const { currentUser } = useSelector((state: RootState) => state.user);
@@ -48,23 +48,7 @@ const Like = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const getInfoStruct = async () => {
-      try {
-        const res = (await getStructre()) as {
-          data: {
-            data: {
-              registerSms: string;
-              registerLink: string;
-            };
-          };
-        };
-        setRegisterSms(res.data.data.registerSms);
-        setRegisterLink(res.data.data.registerLink);
-      } catch (error) {
-        notification("system");
-      }
-    };
-    getInfoStruct();
+    getInfoStruct(setRegisterSms, setRegisterLink);
   }, []);
 
   return (

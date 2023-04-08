@@ -6,6 +6,7 @@ import Login from "@/pages/auth/Login";
 import Like from "@/pages/Like";
 import NotFound from "@/pages/NotFound";
 import UpdateInfo from "@/pages/auth/UpdateInfo";
+import Search from "@/pages/Search";
 
 interface Router {
   path: string;
@@ -14,6 +15,7 @@ interface Router {
 
 const listRouter: Router[] = [
   { path: "/", component: <Home /> },
+  { path: "/search", component: <Search /> },
   { path: "/service/:id?", component: <Service /> },
   { path: "/register", component: <Register /> },
   { path: "/login", component: <Login /> },

@@ -1,5 +1,7 @@
+import { getStructre } from "@/utils/api/api";
 import { toast } from "react-toastify";
-import { getStructre } from "../api/api";
+import { toggleFavourite } from "../api/api";
+import React from "react";
 
 export const registerSMS = (title: string, tel: string): string => {
   return `sms:9123&body=${title.toLocaleUpperCase()} ${tel}`;
@@ -55,5 +57,58 @@ export const notification = (type: string, content?: string) => {
       break;
     default:
       break;
+  }
+};
+
+export const handleToggleFavourite = async (
+  id: string,
+  currentUser: any,
+  listFavourite: string[],
+  setListFavourite: React.Dispatch<React.SetStateAction<string[]>>
+) => {
+  if (!currentUser?.name)
+    return notification("warn", "Đăng nhập để sử dụng tính năng");
+  try {
+    await toggleFavourite({
+      idUser: currentUser._id,
+      idService: id,
+    });
+    const isExist = listFavourite.includes(id);
+    if (isExist) {
+      const newListFavourite = listFavourite.filter(element => element !== id);
+      setListFavourite(newListFavourite);
+      notification("success", "Đã xóa khỏi danh mục yêu thích");
+    } else {
+      setListFavourite([id, ...listFavourite]);
+      notification("success", "Đã thêm vào danh mục yêu thích");
+    }
+  } catch (error) {
+    notification("system");
+  }
+};
+
+export const getInfoStruct = async (
+  setRegisterSms?: React.Dispatch<React.SetStateAction<string>>,
+  setRegisterLink?: React.Dispatch<React.SetStateAction<string>>,
+  setOfferCheck?: React.Dispatch<React.SetStateAction<string>>,
+  setTakeCareGuest?: React.Dispatch<React.SetStateAction<string>>
+) => {
+  try {
+    const res = (await getStructre()) as {
+      data: {
+        data: {
+          registerSms: string;
+          registerLink: string;
+          offerCheck: string;
+          takeCareGuest: string;
+        };
+      };
+    };
+    setRegisterSms && setRegisterSms(res.data.data.registerSms);
+    setRegisterLink && setRegisterLink(res.data.data.registerLink);
+    setOfferCheck && setOfferCheck(res.data.data.offerCheck);
+    setTakeCareGuest && setTakeCareGuest(res.data.data.takeCareGuest);
+  } catch (error) {
+    notification("system");
   }
 };

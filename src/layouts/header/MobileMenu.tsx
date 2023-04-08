@@ -13,7 +13,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { BsListUl, BsSearch } from "react-icons/bs";
 import { Color, RootState } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { listMenu } from "@/utils/configs";
 import { Link as ScrollLink } from "react-scroll";
 import { notification } from "@/utils/helper";
@@ -116,7 +116,7 @@ const MobileMenu = (): JSX.Element => {
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      searchParam && navigate("/?key=" + searchParam);
+      searchParam && navigate("/search?key=" + searchParam);
       !searchParam && notification("warn", "Nhập từ khóa để tìm kiếm dịch vụ");
       setIsOpenSearch(false);
       setSearchParam("");

@@ -48,7 +48,7 @@ const TopHeader = (): JSX.Element => {
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && key) {
-      navigate("/?key=" + key);
+      navigate("/search?key=" + key);
       setKey("");
     }
   };

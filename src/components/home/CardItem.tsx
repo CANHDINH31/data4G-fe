@@ -114,7 +114,7 @@ const CardItem = ({
       >
         <Button
           variant="contained"
-          size="small"
+          size="large"
           color="error"
           href={registerSMS(service.title, registerSms)}
         >
@@ -122,7 +122,7 @@ const CardItem = ({
         </Button>
         <Button
           variant="contained"
-          size="small"
+          size="large"
           href={registerLink}
           target={"_blank"}
         >

@@ -27,7 +27,6 @@ const Register = () => {
     formState: { errors },
     watch,
     reset,
-    setValue,
   } = useForm();
 
   const password = watch("password", "");
