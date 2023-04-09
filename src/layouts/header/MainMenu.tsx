@@ -6,10 +6,10 @@ import { FcManager, FcLike, FcEditImage } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
-import { listMenu } from "@/utils/configs";
 import { notification } from "@/utils/helper";
 import AvatarImg from "@/assets/image/vietnam.png";
+import { useEffect, useState } from "react";
+import { getListMenu } from "@/utils/api/api";
 
 const WrapContainer = styled.div``;
 
@@ -83,19 +83,37 @@ const MainMenu = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: RootState) => state.user);
+
+  const [listMenu, setListMenu] = useState([]);
+
   const hanldeLogout = (): void => {
     notification("success", "Tài khoản đã được đăng xuất");
     dispatch(logout());
   };
+
+  useEffect(() => {
+    const getMenuList = async () => {
+      try {
+        const res = await getListMenu();
+        setListMenu(res.data);
+      } catch (error) {
+        notification("system");
+      }
+    };
+    getMenuList();
+  }, []);
 
   return (
     <WrapContainer>
       <Container>
         <WrapListMenu>
           <ListMenu>
-            {listMenu?.map(menu => (
-              <MenuItem key={menu.id} onClick={() => navigate("/")}>
-                {menu.title}
+            {listMenu?.map((menu: { _id: { slug: string; name: String } }) => (
+              <MenuItem
+                key={menu._id.slug}
+                onClick={() => navigate(`/data/${menu._id.slug}`)}
+              >
+                {menu._id.name}
               </MenuItem>
             ))}
           </ListMenu>

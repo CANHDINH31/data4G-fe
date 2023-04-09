@@ -1,3 +1,5 @@
+import { ServiceType } from "./service";
+
 export enum Color {
   PRIMARY = "#EE0033",
   TEXT_COLOR = "#000000",
@@ -21,24 +23,11 @@ export interface RootState {
       isAdmin: boolean;
       image: string;
       phone?: string;
-      listService: typeService[];
+      listService: ServiceType[];
       fromGoogle?: boolean;
     };
   };
 }
-
-export type typeService = {
-  _id: string;
-  title: string;
-  price: string;
-  content: string;
-};
-
-export type typeCategory = {
-  _id: string;
-  title: string;
-  listService: typeService[];
-};
 
 export type typeUser = {
   _id: string;
@@ -50,9 +39,12 @@ export type typeUser = {
   password?: string;
   fromGoogle?: boolean;
   phone?: string;
-  listService: typeService[];
+  listService: ServiceType[];
 } | null;
 
 export interface SignInResponse {
   message: string;
 }
+
+export * from "./category";
+export * from "./service";

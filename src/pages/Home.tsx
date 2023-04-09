@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Introduce from "@/components/home/Introduce";
 import { Box, Container, Grid, useMediaQuery } from "@mui/material";
-import { getListCategory, getUserInfo } from "@/utils/api/api";
-
-import { RootState, typeCategory } from "@/types";
+import {
+  getCategoryBySlug,
+  getListCategory,
+  getUserInfo,
+} from "@/utils/api/api";
+import { CategoryType, RootState } from "@/types";
 import { useSelector } from "react-redux";
 import {
   getInfoStruct,
@@ -14,15 +17,17 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 import CardItem from "@/components/home/CardItem";
 import { BsArrowUpCircle } from "react-icons/bs";
 import * as Scroll from "react-scroll";
+import { useParams } from "react-router-dom";
 
 const Home = (): JSX.Element => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-
   let scroll = Scroll.animateScroll;
+
+  const param = useParams();
 
   const { currentUser } = useSelector((state: RootState) => state.user);
   const [listFavourite, setListFavourite] = useState<string[]>([]);
-  const [listCategory, setListCategory] = useState<typeCategory[]>([]);
+  const [listCategory, setListCategory] = useState<CategoryType[]>([]);
   const [registerSms, setRegisterSms] = useState<string>("");
   const [registerLink, setRegisterLink] = useState<string>("");
   const [offerCheck, setOfferCheck] = useState<string>("");
@@ -44,6 +49,18 @@ const Home = (): JSX.Element => {
       currentUser ? getListFavourite() : setListFavourite([]);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    const getListCategory = async () => {
+      try {
+        const res = await getCategoryBySlug(param?.slug as string);
+        setListCategory(res.data);
+      } catch (error) {
+        notification("system");
+      }
+    };
+    getListCategory();
+  }, [param]);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -91,24 +108,26 @@ const Home = (): JSX.Element => {
         <Box>
           <Introduce offerCheck={offerCheck} />
           <Grid container spacing={2} mt={4}>
-            {listCategory[0]?.listService?.map(service => (
-              <Grid item lg={3} md={4} sm={6} xs={12} key={service._id}>
-                <CardItem
-                  service={service}
-                  isFavourite={listFavourite?.includes(service._id)}
-                  handleToggleFavourite={() =>
-                    handleToggleFavourite(
-                      service._id,
-                      currentUser,
-                      listFavourite,
-                      setListFavourite
-                    )
-                  }
-                  registerSms={registerSms}
-                  registerLink={registerLink}
-                />
-              </Grid>
-            ))}
+            {listCategory?.map((category: CategoryType) => {
+              return category?.listService?.map(service => (
+                <Grid item lg={3} md={4} sm={6} xs={12} key={service._id}>
+                  <CardItem
+                    service={service}
+                    isFavourite={listFavourite?.includes(service._id as string)}
+                    handleToggleFavourite={() =>
+                      handleToggleFavourite(
+                        service._id as string,
+                        currentUser,
+                        listFavourite,
+                        setListFavourite
+                      )
+                    }
+                    registerSms={registerSms}
+                    registerLink={registerLink}
+                  />
+                </Grid>
+              ));
+            })}
           </Grid>
         </Box>
       )}

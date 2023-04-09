@@ -112,3 +112,13 @@ export const getInfoStruct = async (
     notification("system");
   }
 };
+
+const removeDiacritics = (str: string): string => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
+export const convertToSlug = (text: string) => {
+  const diacriticlessText = removeDiacritics(text);
+  const slug = diacriticlessText.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+  return slug;
+};

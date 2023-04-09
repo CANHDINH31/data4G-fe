@@ -15,6 +15,7 @@ interface Router {
 
 const listRouter: Router[] = [
   { path: "/", component: <Home /> },
+  { path: "/data/:slug", component: <Home /> },
   { path: "/search", component: <Search /> },
   { path: "/service/:id?", component: <Service /> },
   { path: "/register", component: <Register /> },

@@ -1,4 +1,4 @@
-import { GoogleAuthPayload } from "@/types";
+import { CategoryType, GoogleAuthPayload, ServiceType } from "@/types";
 import { API } from "./core";
 
 // AUTH API
@@ -33,6 +33,7 @@ const loginAccount = async (payload: { password: string; email: string }) => {
     return error;
   }
 };
+
 // USER API
 const getUserInfo = async (id: string): Promise<any> => {
   try {
@@ -93,6 +94,24 @@ const deleteUser = async (payload: { listId: Array<string> }) => {
 };
 
 // CATEGORY API
+const getListMenu = async (): Promise<any> => {
+  try {
+    const res = await API.get("/category/listmenu");
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+const getCategoryBySlug = async (slug: string): Promise<any> => {
+  try {
+    slug = slug || "goi-thang";
+    const res = await API.get("/category/get-by-slug?slug=" + slug);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
 const searchCategory = async (title: string | undefined): Promise<any> => {
   try {
     const res = await API.get("/category/search?title=" + title);
@@ -111,7 +130,7 @@ const getListCategory = async (): Promise<any> => {
   }
 };
 
-const createCategory = async (payload: { title: string }): Promise<any> => {
+const createCategory = async (payload: CategoryType): Promise<any> => {
   try {
     const res = await API.post("/category", payload);
     return res;
@@ -122,10 +141,7 @@ const createCategory = async (payload: { title: string }): Promise<any> => {
 
 const updateCategory = async (
   id: string,
-  payload: {
-    title: string;
-    listService: Array<string> | null;
-  }
+  payload: CategoryType
 ): Promise<any> => {
   try {
     const res = await API.put("/category/" + id, payload);
@@ -243,8 +259,10 @@ export {
   deleteUser,
   updateInfoUser,
   toggleFavourite,
+  getListMenu,
   createCategory,
   getListCategory,
+  getCategoryBySlug,
   searchCategory,
   updateCategory,
   deleteCategory,

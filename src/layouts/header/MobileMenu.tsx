@@ -14,8 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsListUl, BsSearch } from "react-icons/bs";
 import { Color, RootState } from "@/types";
 import { useEffect, useState } from "react";
-import { listMenu } from "@/utils/configs";
-import { Link as ScrollLink } from "react-scroll";
 import { notification } from "@/utils/helper";
 import { logout } from "@/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +22,7 @@ import { FaTimes } from "react-icons/fa";
 import AvatarImg from "@/assets/image/vietnam.png";
 import { KeyboardEvent } from "react";
 import { FcEditImage, FcLike } from "react-icons/fc";
+import { getListMenu } from "@/utils/api/api";
 
 const WrapContent = styled(Paper)`
   height: 50px;
@@ -98,6 +97,7 @@ const ImageUser = styled.img`
   width: 30px;
   border-radius: 50%;
 `;
+type MeunType = { _id: { slug: string; name: String } };
 
 const MobileMenu = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -107,6 +107,7 @@ const MobileMenu = (): JSX.Element => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
 
   const [searchParam, setSearchParam] = useState<string>("");
+  const [listMenu, setListMenu] = useState<MeunType[]>([]);
 
   const hanldeLogout = (): void => {
     notification("success", "Tài khoản đã được đăng xuất");
@@ -122,6 +123,18 @@ const MobileMenu = (): JSX.Element => {
       setSearchParam("");
     }
   };
+
+  useEffect(() => {
+    const getMenuList = async () => {
+      try {
+        const res = await getListMenu();
+        setListMenu(res.data);
+      } catch (error) {
+        notification("system");
+      }
+    };
+    getMenuList();
+  }, []);
 
   return (
     <>
@@ -221,22 +234,18 @@ const MobileMenu = (): JSX.Element => {
               )}
             </Box>
 
-            {listMenu?.map(menu => (
-              <MenuItem key={menu.id}>
-                <ScrollLink
-                  to={menu.id}
-                  smooth={true}
-                  offset={-200}
-                  duration={1000}
-                  onClick={() => {
-                    setIsOpenMenu(false);
-                    navigate("/");
-                  }}
-                >
-                  {menu.title}
-                </ScrollLink>
+            {listMenu?.map((menu: MeunType) => (
+              <MenuItem
+                key={menu._id.slug}
+                onClick={() => {
+                  navigate(`/data/${menu._id.slug}`);
+                  setIsOpenMenu(false);
+                }}
+              >
+                {menu._id.name}
               </MenuItem>
             ))}
+
             {currentUser && (
               <>
                 <MenuItem

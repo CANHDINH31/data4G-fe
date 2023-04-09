@@ -15,8 +15,17 @@
     <meta property="og:title" content="Thả ga với Viettel Data" />
     <meta property="og:url" content="https://dataviettel.netlify.app/" />
     <meta
+      property="og:description"
+      content="Viettel là một trong những nhà cung cấp dịch vụ viễn thông hàng đầu tại Việt Nam, hiện đang cung cấp nhiều gói cước data cho khách hàng sử dụng điện thoại di động và thiết bị di động khác. "
+    />
+    <meta
       property="og:image"
       content="https://viettelgoidata.com.vn/landi/wp-content/uploads/2021/03/favicon-80x80.png"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="Đăng kí mạng, Data , Đăng kí dữ liệu, dữ liệu, Viettel, 4G, Khuyến mại data"
     />
     <title>Viettel - Đăng kí mạng</title>
     <link
@@ -41,17 +50,13 @@
       var chatbox = document.getElementById("fb-customer-chat");
       chatbox.setAttribute("page_id", "113537288037074");
       chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
 
-    <!-- Your SDK code -->
-    <script>
       window.fbAsyncInit = function () {
         FB.init({
           xfbml: true,
           version: "v16.0",
         });
       };
-
       (function (d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0];
@@ -61,12 +66,7 @@
         js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
-    </script>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ9YE6V19"
-    ></script>
-    <script>
+
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -74,12 +74,9 @@
       gtag("js", new Date());
 
       gtag("config", "G-0ZZ9YE6V19");
-    </script>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-11141309821"
-    ></script>
-    <script>
+      gtag("event", "conversion", {
+        send_to: "AW-11141309821/SAYyCK-z1pYYEP3Ky8Ap",
+      });
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -88,11 +85,14 @@
 
       gtag("config", "AW-11141309821");
     </script>
-    <script>
-      gtag("event", "conversion", {
-        send_to: "AW-11141309821/SAYyCK-z1pYYEP3Ky8Ap",
-      });
-    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-11141309821"
+    ></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ9YE6V19"
+    ></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
