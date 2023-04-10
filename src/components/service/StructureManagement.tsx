@@ -1,5 +1,6 @@
 import { ColorType } from "@/types";
 import { getStructre, updateStructure } from "@/utils/api";
+import { NOT_NULL } from "@/utils/configs";
 import { notification } from "@/utils/helper";
 import { Box, Paper, TextField, Typography, Button, Grid } from "@mui/material";
 import { SetStateAction, useEffect, useState } from "react";
@@ -88,7 +89,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("offerCheck", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                 })}
                 value={offerCheck}
                 onChange={e => setOfferCheck(e.target.value)}
@@ -108,7 +109,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("registerSms", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                   pattern: {
                     value: /^0[35789]\d{8}$/,
                     message: "Số điện thoại không hợp lệ",
@@ -132,7 +133,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("registerLink", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                 })}
                 value={registerLink}
                 onChange={e => setRegisterLink(e.target.value)}
@@ -152,7 +153,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("zaloLink", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                 })}
                 value={zaloLink}
                 onChange={e => setZaloLink(e.target.value)}
@@ -172,7 +173,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("facebookLink", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                 })}
                 value={facebookLink}
                 onChange={e => setFacebookLink(e.target.value)}
@@ -192,7 +193,7 @@ const StructureManagement = () => {
                 size="small"
                 sx={{ width: "80%" }}
                 {...register("takeCareGuest", {
-                  required: "Trường này không được để trống",
+                  required: NOT_NULL,
                   pattern: {
                     value: /^0[35789]\d{8}$/,
                     message: "Số điện thoại không hợp lệ",

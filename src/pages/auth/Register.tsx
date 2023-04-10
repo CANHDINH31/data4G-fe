@@ -15,6 +15,7 @@ import { notification } from "@/utils/helper";
 import { registerAccount } from "@/utils/api";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import { NOT_NULL } from "@/utils/configs";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ const Register = () => {
                   variant="standard"
                   fullWidth
                   {...register("name", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                   })}
                 />
                 {errors.name && (
@@ -104,7 +105,7 @@ const Register = () => {
                   variant="standard"
                   fullWidth
                   {...register("email", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: "Email không hợp lệ",
@@ -126,7 +127,7 @@ const Register = () => {
                   variant="standard"
                   fullWidth
                   {...register("password", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                   })}
                   type={!isShowPassword ? "password" : "text"}
                   InputProps={{
@@ -160,7 +161,7 @@ const Register = () => {
                   variant="standard"
                   fullWidth
                   {...register("rePassword", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                     validate: validateRePassword,
                   })}
                   type={!isShowRePassword ? "password" : "text"}
