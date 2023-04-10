@@ -37,6 +37,7 @@ import {
   updateService,
 } from "@/utils/api";
 import { notification } from "@/utils/helper";
+import { NOT_NULL } from "@/utils/configs";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -648,7 +649,7 @@ const CategoryManagement = () => {
                   variant="subtitle2"
                   sx={{ color: `${ColorType.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {NOT_NULL}
                 </Typography>
               )}
             </Box>
@@ -666,7 +667,7 @@ const CategoryManagement = () => {
                   variant="subtitle2"
                   sx={{ color: `${ColorType.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {NOT_NULL}
                 </Typography>
               )}
             </Box>
@@ -682,7 +683,7 @@ const CategoryManagement = () => {
                   variant="subtitle2"
                   sx={{ color: `${ColorType.PRIMARY}` }}
                 >
-                  Không được để trống
+                  {NOT_NULL}
                 </Typography>
               )}
             </Box>

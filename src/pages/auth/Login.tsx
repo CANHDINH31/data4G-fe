@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { BiHide, BiShow } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import { NOT_NULL } from "@/utils/configs";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const Login = () => {
                   variant="standard"
                   fullWidth
                   {...register("email", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: "Email không hợp lệ",
@@ -118,7 +119,7 @@ const Login = () => {
                   variant="standard"
                   fullWidth
                   {...register("password", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                   })}
                   type={!isShowPassword ? "password" : "text"}
                   InputProps={{

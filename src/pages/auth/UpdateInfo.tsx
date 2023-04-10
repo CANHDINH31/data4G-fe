@@ -17,6 +17,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "@/redux/userSlice";
+import { NOT_NULL } from "@/utils/configs";
 
 const UpdateInfo = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const UpdateInfo = () => {
                   variant="standard"
                   fullWidth
                   {...register("name", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                   })}
                 />
                 {errors.name && (
@@ -114,7 +115,7 @@ const UpdateInfo = () => {
                   variant="standard"
                   fullWidth
                   {...register("email", {
-                    required: "Trường không này không được để trống",
+                    required: NOT_NULL,
                   })}
                   disabled
                 />

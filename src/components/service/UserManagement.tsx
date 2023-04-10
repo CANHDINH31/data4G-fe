@@ -34,6 +34,7 @@ import {
   updateInfoUser,
 } from "@/utils/api";
 import { notification } from "@/utils/helper";
+import { NOT_NULL } from "@/utils/configs";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -310,7 +311,7 @@ const UserManagement = () => {
                     placeholder="Nhập email, tên, số điện thoại ..."
                     onKeyPress={handleEnterPress}
                     {...registerSearch("search", {
-                      required: "Không được để trống",
+                      required: NOT_NULL,
                     })}
                   />
                   {searchErrors.search && (
@@ -403,7 +404,7 @@ const UserManagement = () => {
                 sx={{ width: "25vw" }}
                 size="small"
                 {...registerAdd("name", {
-                  required: "Trường không này không được để trống",
+                  required: NOT_NULL,
                 })}
               />
               {addErrors.name && (
@@ -422,7 +423,7 @@ const UserManagement = () => {
                 sx={{ width: "25vw" }}
                 size="small"
                 {...registerAdd("email", {
-                  required: "Trường không này không được để trống",
+                  required: NOT_NULL,
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: "Email không hợp lệ",
@@ -467,7 +468,7 @@ const UserManagement = () => {
                 sx={{ width: "25vw" }}
                 size="small"
                 {...registerAdd("password", {
-                  required: "Trường không này không được để trống",
+                  required: NOT_NULL,
                 })}
               />
               {addErrors.password && (
@@ -518,7 +519,7 @@ const UserManagement = () => {
                 sx={{ width: "25vw" }}
                 size="small"
                 {...registerEdit("name", {
-                  required: "Trường không này không được để trống",
+                  required: NOT_NULL,
                 })}
               />
               {editErrors.name && (
@@ -538,7 +539,7 @@ const UserManagement = () => {
                 sx={{ width: "25vw" }}
                 size="small"
                 {...registerEdit("email", {
-                  required: "Trường không này không được để trống",
+                  required: NOT_NULL,
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: "Email không hợp lệ",
