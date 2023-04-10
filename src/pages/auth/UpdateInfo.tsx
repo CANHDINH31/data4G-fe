@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import RegisterImg from "@/assets/image/register.png";
-import { Color, RootState } from "@/types";
+import { ColorType, RootStateType } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
@@ -21,7 +21,7 @@ import { loginSuccess } from "@/redux/userSlice";
 const UpdateInfo = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const [isShowRePassword, setIsShowRePassword] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
@@ -101,7 +101,7 @@ const UpdateInfo = () => {
                 />
                 {errors.name && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.name.message?.toString()}
                     </Typography>
                   </Box>
@@ -120,7 +120,7 @@ const UpdateInfo = () => {
                 />
                 {errors.email && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.email.message?.toString()}
                     </Typography>
                   </Box>
@@ -154,7 +154,10 @@ const UpdateInfo = () => {
                     />
                     {errors.password && (
                       <Box mt={1}>
-                        <Typography variant="subtitle2" color={Color.PRIMARY}>
+                        <Typography
+                          variant="subtitle2"
+                          color={ColorType.PRIMARY}
+                        >
                           {errors.password.message?.toString()}
                         </Typography>
                       </Box>
@@ -190,7 +193,10 @@ const UpdateInfo = () => {
                     />
                     {errors.rePassword && (
                       <Box mt={1}>
-                        <Typography variant="subtitle2" color={Color.PRIMARY}>
+                        <Typography
+                          variant="subtitle2"
+                          color={ColorType.PRIMARY}
+                        >
                           {errors.rePassword.message?.toString()}
                         </Typography>
                       </Box>
@@ -214,7 +220,7 @@ const UpdateInfo = () => {
                 />
                 {errors.phone && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.phone.message?.toString()}
                     </Typography>
                   </Box>

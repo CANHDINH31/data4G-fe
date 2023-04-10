@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import LogoImage from "@/assets/image/top-header-logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { KeyboardEvent, useState } from "react";
 
 const WrapContainer = styled.div`
-  background-color: ${Color.BG_SECONDARY};
+  background-color: ${ColorType.BG_SECONDARY};
 `;
 
 const TopHeaderContainer = styled.div`
@@ -21,14 +21,14 @@ const LogoHeader = styled.div`
 `;
 
 const SearchHeader = styled.div`
-  background-color: ${Color.BG_WHITE};
+  background-color: ${ColorType.BG_WHITE};
   display: flex;
   border-radius: 9px;
   padding: 8px 10px;
   & input {
     border: none;
     font-size: 14px;
-    color: ${Color.TEXT_COLOR_SECONDARY};
+    color: ${ColorType.TEXT_COLOR_SECONDARY};
   }
 `;
 
@@ -38,7 +38,7 @@ const LogoSearch = styled.div`
   & svg {
     font-size: 20px;
     margin-right: 7px;
-    color: ${Color.TEXT_COLOR_SECONDARY};
+    color: ${ColorType.TEXT_COLOR_SECONDARY};
   }
 `;
 

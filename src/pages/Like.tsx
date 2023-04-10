@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import NoResult from "@/assets/image/no.png";
 import CardItem from "@/components/home/CardItem";
 import { useSelector } from "react-redux";
-import { RootState, ServiceType } from "@/types";
+import { RootStateType, ServiceType } from "@/types";
 import { getInfoStruct, notification } from "@/utils/helper";
 import { getUserInfo, toggleFavourite } from "@/utils/api";
 
 const Like = () => {
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
 
   const [registerSms, setRegisterSms] = useState<string>("");
   const [registerLink, setRegisterLink] = useState<string>("");

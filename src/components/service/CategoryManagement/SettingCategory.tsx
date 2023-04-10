@@ -1,4 +1,4 @@
-import { CategoryType, Color } from "@/types";
+import { CategoryType, ColorType } from "@/types";
 import { getListCategory } from "@/utils/api";
 import { notification } from "@/utils/helper";
 import { Button, Grid, TextField, Typography } from "@mui/material";
@@ -103,7 +103,7 @@ const SettingCategory = ({
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Nhập tên danh mục để tìm kiếm
                 </Typography>

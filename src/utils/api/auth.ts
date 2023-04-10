@@ -1,8 +1,8 @@
-import { GoogleAuthPayload } from "@/types";
+import { GoogleAuthPayloadType } from "@/types";
 import { API } from "./core";
 
 // AUTH API
-const signInWithGoogle = async (payload: GoogleAuthPayload) => {
+const signInWithGoogle = async (payload: GoogleAuthPayloadType) => {
   try {
     const res = await API.post("/auth/google", payload);
     return res;

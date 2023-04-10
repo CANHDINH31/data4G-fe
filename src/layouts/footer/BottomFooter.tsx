@@ -1,14 +1,13 @@
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import styled from "styled-components";
 import { GiPositionMarker } from "react-icons/gi";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { getStructre } from "@/utils/api";
 import { notification } from "@/utils/helper";
-import { Link } from "react-router-dom";
 
 const WrapFooter = styled.div`
-  background-color: ${Color.PRIMARY};
+  background-color: ${ColorType.PRIMARY};
   display: flex;
   justify-content: center;
   gap: 20px;

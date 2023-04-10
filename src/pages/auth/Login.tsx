@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import RegisterImg from "@/assets/image/register.png";
-import { Color, SignInResponse } from "@/types";
+import { ColorType } from "@/types";
 import { signInWithPopup } from "firebase/auth";
 import { loginAccount, signInWithGoogle } from "@/utils/api";
 import { loginSuccess } from "@/redux/userSlice";
@@ -38,10 +38,10 @@ const Login = () => {
     try {
       const infoEmail = await signInWithPopup(auth, provider);
       const data = (await signInWithGoogle({
-        name: infoEmail.user.displayName,
-        email: infoEmail.user.email,
-        image: infoEmail.user.photoURL,
-      })) as { data: SignInResponse };
+        name: infoEmail.user.displayName as string,
+        email: infoEmail.user.email as string,
+        image: infoEmail.user.photoURL as string,
+      })) as { data: { message: string } };
       dispatch(loginSuccess(data.data));
       notification("success", data.data?.message);
       navigate("/");
@@ -105,7 +105,7 @@ const Login = () => {
                 />
                 {errors.email && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.email.message?.toString()}
                     </Typography>
                   </Box>
@@ -139,7 +139,7 @@ const Login = () => {
                 />
                 {errors.password && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.password.message?.toString()}
                     </Typography>
                   </Box>
@@ -174,7 +174,7 @@ const Login = () => {
             onClick={() => navigate("/register")}
           >
             Chưa có tài khoản ? Quý khách muốn{" "}
-            <span style={{ color: Color.PRIMARY }}>Đăng kí</span>
+            <span style={{ color: ColorType.PRIMARY }}>Đăng kí</span>
           </Typography>
         </Box>
       </Box>

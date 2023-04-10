@@ -1,5 +1,5 @@
 import DialogModal from "@/components/common/DialogModal";
-import { CategoryType, Color, ServiceType } from "@/types";
+import { CategoryType, ColorType, ServiceType } from "@/types";
 import { NOT_NULL, UPDATE_CATEGORY } from "@/utils/configs";
 import {
   Box,
@@ -56,7 +56,7 @@ const EditCategory = ({
             style={{
               fontSize: "20px",
               cursor: "pointer",
-              color: `${Color.PRIMARY}`,
+              color: `${ColorType.PRIMARY}`,
             }}
             onClick={() => handleRemoveService(params.row.id)}
           />
@@ -106,7 +106,7 @@ const EditCategory = ({
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>
@@ -123,7 +123,7 @@ const EditCategory = ({
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>
@@ -142,7 +142,7 @@ const EditCategory = ({
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>

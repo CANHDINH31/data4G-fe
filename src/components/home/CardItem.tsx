@@ -3,7 +3,7 @@ import { Paper, Typography, Divider, Button, Box } from "@mui/material";
 import LogoImage from "@/assets/image/card-img.svg";
 import { BsFillDatabaseFill } from "react-icons/bs";
 import { BiDollarCircle } from "react-icons/bi";
-import { Color, ServiceType } from "@/types";
+import { ColorType, ServiceType } from "@/types";
 import { registerSMS } from "@/utils/helper";
 import { FcLike } from "react-icons/fc";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -56,7 +56,7 @@ const Price = styled.div`
   svg {
     font-size: 18px;
     margin-right: 4px;
-    color: ${Color.PRIMARY};
+    color: ${ColorType.PRIMARY};
   }
 `;
 
@@ -66,7 +66,7 @@ const Content = styled.div`
   svg {
     font-size: 18px;
     margin-right: 4px;
-    color: ${Color.PRIMARY};
+    color: ${ColorType.PRIMARY};
   }
   span {
     font-size: 14px;

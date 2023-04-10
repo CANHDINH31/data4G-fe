@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, Container, Typography, Box, Paper } from "@mui/material";
-import { Color, RootState } from "@/types";
+import { ColorType, RootStateType } from "@/types";
 import { FiLogOut } from "react-icons/fi";
 import { FcManager, FcLike, FcEditImage } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,10 +26,10 @@ const ListMenu = styled.div`
 const MenuItem = styled.div`
   padding: 15px 10px;
   font-size: 15px;
-  color: ${Color.TEXT_COLOR};
+  color: ${ColorType.TEXT_COLOR};
   cursor: pointer;
   &:hover {
-    color: ${Color.PRIMARY};
+    color: ${ColorType.PRIMARY};
   }
 `;
 
@@ -74,15 +74,15 @@ const ListInfoItem = styled.div`
     font-size: 24px;
   }
   &:hover {
-    color: ${Color.PRIMARY};
-    background-color: ${Color.BG_SECONDARY};
+    color: ${ColorType.PRIMARY};
+    background-color: ${ColorType.BG_SECONDARY};
   }
 `;
 
 const MainMenu = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
 
   const [listMenu, setListMenu] = useState([]);
 

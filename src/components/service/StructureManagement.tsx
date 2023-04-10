@@ -1,4 +1,4 @@
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import { getStructre, updateStructure } from "@/utils/api";
 import { notification } from "@/utils/helper";
 import { Box, Paper, TextField, Typography, Button, Grid } from "@mui/material";
@@ -95,7 +95,7 @@ const StructureManagement = () => {
               />
               {errors.offerCheck && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.offerCheck?.message?.toString()}
                   </Typography>
                 </Box>
@@ -119,7 +119,7 @@ const StructureManagement = () => {
               />
               {errors.registerSms && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.registerSms?.message?.toString()}
                   </Typography>
                 </Box>
@@ -139,7 +139,7 @@ const StructureManagement = () => {
               />
               {errors.registerLink && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.registerLink?.message?.toString()}
                   </Typography>
                 </Box>
@@ -159,7 +159,7 @@ const StructureManagement = () => {
               />
               {errors.zaloLink && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.zaloLink?.message?.toString()}
                   </Typography>
                 </Box>
@@ -179,7 +179,7 @@ const StructureManagement = () => {
               />
               {errors.facebookLink && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.facebookLink?.message?.toString()}
                   </Typography>
                 </Box>
@@ -203,7 +203,7 @@ const StructureManagement = () => {
               />
               {errors.takeCareGuest && (
                 <Box mt={1}>
-                  <Typography variant="subtitle2" color={Color.PRIMARY}>
+                  <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                     {errors.takeCareGuest?.message?.toString()}
                   </Typography>
                 </Box>

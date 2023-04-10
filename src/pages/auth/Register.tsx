@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import RegisterImg from "@/assets/image/register.png";
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
@@ -91,7 +91,7 @@ const Register = () => {
                 />
                 {errors.name && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.name.message?.toString()}
                     </Typography>
                   </Box>
@@ -113,7 +113,7 @@ const Register = () => {
                 />
                 {errors.email && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.email.message?.toString()}
                     </Typography>
                   </Box>
@@ -147,7 +147,7 @@ const Register = () => {
                 />
                 {errors.password && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.password.message?.toString()}
                     </Typography>
                   </Box>
@@ -182,7 +182,7 @@ const Register = () => {
                 />
                 {errors.rePassword && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.rePassword.message?.toString()}
                     </Typography>
                   </Box>
@@ -203,7 +203,7 @@ const Register = () => {
                 />
                 {errors.phone && (
                   <Box mt={1}>
-                    <Typography variant="subtitle2" color={Color.PRIMARY}>
+                    <Typography variant="subtitle2" color={ColorType.PRIMARY}>
                       {errors.phone.message?.toString()}
                     </Typography>
                   </Box>
@@ -230,7 +230,7 @@ const Register = () => {
             onClick={() => navigate("/login")}
           >
             Đã có tài khoản ? Quý khách muốn{" "}
-            <span style={{ color: Color.PRIMARY }}>Đăng nhập</span>
+            <span style={{ color: ColorType.PRIMARY }}>Đăng nhập</span>
           </Typography>
         </Box>
       </Box>

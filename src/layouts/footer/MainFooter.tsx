@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, Container, Link } from "@mui/material";
-import { Color } from "@/types";
+import { Container, Link } from "@mui/material";
+import { ColorType } from "@/types";
 import LogoImage from "@/assets/image/top-header-logo.png";
 import { SiZalo } from "react-icons/si";
 import { BsFacebook } from "react-icons/bs";
@@ -9,7 +9,7 @@ import { notification } from "@/utils/helper";
 import { getStructre } from "@/utils/api";
 
 const WrapContainer = styled.div`
-  background-color: ${Color.BG_SECONDARY};
+  background-color: ${ColorType.BG_SECONDARY};
   padding: 30px 0;
 `;
 const WrapFooter = styled.div`
@@ -32,7 +32,7 @@ const TextFooter = styled.div`
   letter-spacing: 0.1px;
   word-wrap: break-word;
   white-space: pre-wrap;
-  color: ${Color.TEXT_COLOR};
+  color: ${ColorType.TEXT_COLOR};
 `;
 const DescriptionFooter = styled.div`
   margin-top: 40px;
@@ -42,7 +42,7 @@ const DescriptionFooter = styled.div`
   letter-spacing: 0.1px;
   word-wrap: break-word;
   white-space: pre-wrap;
-  color: ${Color.TEXT_COLOR};
+  color: ${ColorType.TEXT_COLOR};
 `;
 const RightFooter = styled.div`
   flex: 3;
@@ -64,7 +64,7 @@ const TitleFooter = styled.div`
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.1px;
-  color: ${Color.TEXT_COLOR};
+  color: ${ColorType.TEXT_COLOR};
 `;
 
 const FooterMenu = styled.div`
@@ -72,7 +72,7 @@ const FooterMenu = styled.div`
 `;
 const FooterMenuItem = styled.div`
   font-size: 12px;
-  color: ${Color.TEXT_COLOR};
+  color: ${ColorType.TEXT_COLOR};
   letter-spacing: 0.1px;
   cursor: pointer;
   margin-bottom: 4px;

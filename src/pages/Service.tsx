@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Color, RootState } from "@/types";
+import { ColorType, RootStateType } from "@/types";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Box, Typography, Tab, Tabs } from "@mui/material";
 import ServiceManagement from "@/components/service/ServiceManagement";
@@ -11,7 +11,7 @@ import UserManagement from "@/components/service/UserManagement";
 const Service = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -40,7 +40,7 @@ const Service = () => {
         display={"flex"}
         justifyContent={"center"}
         m={4}
-        sx={{ color: `${Color.PRIMARY}` }}
+        sx={{ color: `${ColorType.PRIMARY}` }}
       >
         <Typography variant="h4">Quản lý hệ thống</Typography>
       </Box>

@@ -1,4 +1,4 @@
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import { Paper, Typography, Button } from "@mui/material";
 import { BsGift } from "react-icons/bs";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ const WrapContent = styled(Paper)`
 
 const MainContent = styled(Typography)`
   & > span {
-    color: ${Color.PRIMARY};
+    color: ${ColorType.PRIMARY};
   }
 `;
 

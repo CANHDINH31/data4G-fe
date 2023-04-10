@@ -1,5 +1,5 @@
 import DialogModal from "@/components/common/DialogModal";
-import { CategoryType, Color } from "@/types";
+import { CategoryType, ColorType } from "@/types";
 import { ADD_CATEGORY, NOT_NULL } from "@/utils/configs";
 import {
   Box,
@@ -55,7 +55,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>
@@ -72,7 +72,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>
@@ -91,7 +91,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           <Typography
             mt={2}
             variant="subtitle2"
-            sx={{ color: `${Color.PRIMARY}` }}
+            sx={{ color: `${ColorType.PRIMARY}` }}
           >
             {NOT_NULL}
           </Typography>

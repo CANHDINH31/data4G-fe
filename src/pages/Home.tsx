@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Introduce from "@/components/home/Introduce";
 import { Box, Container, Grid, useMediaQuery } from "@mui/material";
 import { getCategoryBySlug, getListCategory, getUserInfo } from "@/utils/api";
-import { CategoryType, RootState } from "@/types";
+import { CategoryType, RootStateType } from "@/types";
 import { useSelector } from "react-redux";
 import {
   getInfoStruct,
@@ -21,7 +21,7 @@ const Home = (): JSX.Element => {
 
   const param = useParams();
 
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
   const [listFavourite, setListFavourite] = useState<string[]>([]);
   const [listCategory, setListCategory] = useState<CategoryType[]>([]);
   const [registerSms, setRegisterSms] = useState<string>("");

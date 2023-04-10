@@ -1,5 +1,5 @@
 import CardItem from "@/components/home/CardItem";
-import { RootState, ServiceType } from "@/types";
+import { RootStateType, ServiceType } from "@/types";
 import {
   Box,
   Button,
@@ -25,7 +25,7 @@ import { useSelector } from "react-redux";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
 
   const searchParams = new URLSearchParams(location.search);
   const paramValue = searchParams.get("key");

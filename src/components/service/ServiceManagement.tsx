@@ -26,7 +26,7 @@ import {
 } from "react-icons/ai";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Color } from "@/types";
+import { ColorType } from "@/types";
 import {
   addServiceToCategory,
   createService,
@@ -422,7 +422,7 @@ const CategoryManagement = () => {
                     <Typography
                       mt={2}
                       variant="subtitle2"
-                      sx={{ color: `${Color.PRIMARY}` }}
+                      sx={{ color: `${ColorType.PRIMARY}` }}
                     >
                       Nhập tên danh mục để tìm kiếm
                     </Typography>
@@ -516,7 +516,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Nhập tên để tạo dịch vụ
                 </Typography>
@@ -534,7 +534,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Nhập giá để tạo dịch vụ
                 </Typography>
@@ -550,7 +550,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Nhập nội dung để tạo danh mục
                 </Typography>
@@ -646,7 +646,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Không được để trống
                 </Typography>
@@ -664,7 +664,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Không được để trống
                 </Typography>
@@ -680,7 +680,7 @@ const CategoryManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   Không được để trống
                 </Typography>

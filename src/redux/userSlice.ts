@@ -1,8 +1,8 @@
-import { typeUser } from "@/types";
+import { UserType } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: {} as typeUser,
+  currentUser: {},
 };
 
 export const userSlice = createSlice({
@@ -17,7 +17,7 @@ export const userSlice = createSlice({
     },
 
     logout: state => {
-      state.currentUser = null;
+      state.currentUser = {} as UserType;
     },
   },
 });

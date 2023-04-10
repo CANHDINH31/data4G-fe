@@ -26,7 +26,7 @@ import {
 } from "react-icons/ai";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Color, typeUser } from "@/types";
+import { ColorType, UserType } from "@/types";
 import {
   deleteUser,
   registerAccount,
@@ -157,7 +157,7 @@ const UserManagement = () => {
   const [isOpenDialogEdit, setIsOpenDialogEdit] = useState<boolean>(false);
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] =
     useState<boolean>(false);
-  const [listUser, setListUser] = useState<typeUser[]>([]);
+  const [listUser, setListUser] = useState<UserType[]>([]);
   const [listIdDelete, setListIdDelete] = useState<Array<string>>([]);
 
   //ADD USER
@@ -208,8 +208,8 @@ const UserManagement = () => {
     const editUser = listUser.find(user => user && user.id === id);
     if (editUser) {
       setValue("id", editUser.id);
-      setValue("email", editUser.email);
-      setValue("name", editUser.name);
+      setValue("email", editUser.email as string);
+      setValue("name", editUser.name as string);
       setValue("phone", editUser.phone as string);
       setValue("password", editUser.password as string);
       setValue("fromGoogle", editUser.fromGoogle);
@@ -258,7 +258,7 @@ const UserManagement = () => {
   }> = async query => {
     try {
       const data = await searchUser(query.search);
-      const newListUser = data.data?.map((user: typeUser) => ({
+      const newListUser = data.data?.map((user: UserType) => ({
         id: user?._id,
         ...user,
       }));
@@ -317,7 +317,7 @@ const UserManagement = () => {
                     <Typography
                       mt={2}
                       variant="subtitle2"
-                      sx={{ color: `${Color.PRIMARY}` }}
+                      sx={{ color: `${ColorType.PRIMARY}` }}
                     >
                       {searchErrors.search.message}
                     </Typography>
@@ -410,7 +410,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {addErrors.name.message}
                 </Typography>
@@ -433,7 +433,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {addErrors.email.message}
                 </Typography>
@@ -455,7 +455,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {addErrors.phone.message}
                 </Typography>
@@ -474,7 +474,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {addErrors.password.message}
                 </Typography>
@@ -525,7 +525,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {editErrors.name.message}
                 </Typography>
@@ -549,7 +549,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {editErrors.email.message}
                 </Typography>
@@ -571,7 +571,7 @@ const UserManagement = () => {
                 <Typography
                   mt={2}
                   variant="subtitle2"
-                  sx={{ color: `${Color.PRIMARY}` }}
+                  sx={{ color: `${ColorType.PRIMARY}` }}
                 >
                   {editErrors.phone.message}
                 </Typography>
@@ -589,7 +589,7 @@ const UserManagement = () => {
                   <Typography
                     mt={2}
                     variant="subtitle2"
-                    sx={{ color: `${Color.PRIMARY}` }}
+                    sx={{ color: `${ColorType.PRIMARY}` }}
                   >
                     {addErrors.password.message}
                   </Typography>

@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { BsListUl, BsSearch } from "react-icons/bs";
-import { Color, RootState } from "@/types";
+import { ColorType, RootStateType } from "@/types";
 import { useEffect, useState } from "react";
 import { notification } from "@/utils/helper";
 import { logout } from "@/redux/userSlice";
@@ -66,7 +66,7 @@ const LogoHeader = styled.div`
 
 const ListMenu = styled(Box)`
   position: fixed;
-  background-color: ${Color.BG_SECONDARY};
+  background-color: ${ColorType.BG_SECONDARY};
   outline: none;
   border: none;
   height: 100vh;
@@ -80,10 +80,10 @@ const MenuItem = styled.div`
   padding-left: 20px;
   font-size: 1em;
   font-weight: 500;
-  color: ${Color.TEXT_COLOR_SECONDARY};
+  color: ${ColorType.TEXT_COLOR_SECONDARY};
   cursor: pointer;
   &:hover {
-    color: ${Color.PRIMARY};
+    color: ${ColorType.PRIMARY};
   }
   & a {
     display: block;
@@ -102,7 +102,7 @@ type MeunType = { _id: { slug: string; name: String } };
 const MobileMenu = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootStateType) => state.user);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
 
@@ -185,7 +185,7 @@ const MobileMenu = (): JSX.Element => {
             <Box display="flex" justifyContent="end" padding={"0 15px"}>
               <FaTimes
                 onClick={() => setIsOpenMenu(false)}
-                color={Color.PRIMARY}
+                color={ColorType.PRIMARY}
               />
             </Box>
             <Box
