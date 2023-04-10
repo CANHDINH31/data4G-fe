@@ -1,5 +1,5 @@
 import CardItem from "@/components/home/CardItem";
-import { RootState, typeCategory, typeService } from "@/types";
+import { RootState, ServiceType } from "@/types";
 import {
   Box,
   Button,
@@ -20,7 +20,7 @@ import {
   handleToggleFavourite,
   notification,
 } from "@/utils/helper";
-import { getStructre, searchService, toggleFavourite } from "@/utils/api/api";
+import { searchService } from "@/utils/api/api";
 import { useSelector } from "react-redux";
 
 const Search = () => {
@@ -31,7 +31,7 @@ const Search = () => {
   const paramValue = searchParams.get("key");
 
   const [searchParam, setSearchParam] = useState<string>("");
-  const [listResult, setListResult] = useState<typeService[]>([]);
+  const [listResult, setListResult] = useState<ServiceType[]>([]);
   const [listFavourite, setListFavourite] = useState<string[]>([]);
   const [registerSms, setRegisterSms] = useState<string>("");
   const [registerLink, setRegisterLink] = useState<string>("");
@@ -107,10 +107,10 @@ const Search = () => {
                 <Grid item lg={3} md={4} sm={6} xs={12} key={service._id}>
                   <CardItem
                     service={service}
-                    isFavourite={listFavourite?.includes(service._id)}
+                    isFavourite={listFavourite?.includes(service._id as string)}
                     handleToggleFavourite={() =>
                       handleToggleFavourite(
-                        service._id,
+                        service._id as string,
                         currentUser,
                         listFavourite,
                         setListFavourite

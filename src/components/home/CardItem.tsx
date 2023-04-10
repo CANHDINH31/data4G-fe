@@ -3,7 +3,7 @@ import { Paper, Typography, Divider, Button, Box } from "@mui/material";
 import LogoImage from "@/assets/image/card-img.svg";
 import { BsFillDatabaseFill } from "react-icons/bs";
 import { BiDollarCircle } from "react-icons/bi";
-import { Color, typeService } from "@/types";
+import { Color, ServiceType } from "@/types";
 import { registerSMS } from "@/utils/helper";
 import { FcLike } from "react-icons/fc";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -74,7 +74,7 @@ const Content = styled.div`
 `;
 
 type Props = {
-  service: typeService;
+  service: ServiceType;
   isFavourite: boolean;
   registerSms: string;
   registerLink: string;
@@ -101,7 +101,7 @@ const CardItem = ({
           <BsFillDatabaseFill />
           <span>{service.content}</span>
         </Content>
-        <WrapIcon onClick={() => handleToggleFavourite(service._id)}>
+        <WrapIcon onClick={() => handleToggleFavourite(service._id as string)}>
           {isFavourite ? <FcLike size={20} /> : <AiOutlineHeart size={20} />}
         </WrapIcon>
       </WrapText>
@@ -116,7 +116,7 @@ const CardItem = ({
           variant="contained"
           size="large"
           color="error"
-          href={registerSMS(service.title, registerSms)}
+          href={registerSMS(service.title as string, registerSms)}
         >
           Đăng kí qua SMS
         </Button>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import NoResult from "@/assets/image/no.png";
 import CardItem from "@/components/home/CardItem";
 import { useSelector } from "react-redux";
-import { RootState, typeService } from "@/types";
+import { RootState, ServiceType } from "@/types";
 import { getInfoStruct, notification } from "@/utils/helper";
 import { getUserInfo, toggleFavourite } from "@/utils/api/api";
 
@@ -13,7 +13,7 @@ const Like = () => {
   const [registerSms, setRegisterSms] = useState<string>("");
   const [registerLink, setRegisterLink] = useState<string>("");
 
-  const [listFavourite, setListFavourite] = useState<typeService[]>([]);
+  const [listFavourite, setListFavourite] = useState<ServiceType[]>([]);
 
   const handleRemoveLike = async (id: string) => {
     try {
