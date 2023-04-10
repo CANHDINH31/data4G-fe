@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { notification } from "@/utils/helper";
 import AvatarImg from "@/assets/image/vietnam.png";
 import { useEffect, useState } from "react";
-import { getListMenu } from "@/utils/api/api";
+import { getListMenu } from "@/utils/api";
 
 const WrapContainer = styled.div``;
 

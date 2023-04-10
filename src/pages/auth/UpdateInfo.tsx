@@ -12,7 +12,7 @@ import { Color, RootState } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
-import { updateInfoUser } from "@/utils/api/api";
+import { updateInfoUser } from "@/utils/api";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

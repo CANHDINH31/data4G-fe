@@ -1,4 +1,4 @@
-import { getStructre } from "@/utils/api/api";
+import { getStructre } from "@/utils/api";
 import { getInfoStruct, notification } from "@/utils/helper";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";

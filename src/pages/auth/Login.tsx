@@ -10,7 +10,7 @@ import {
 import RegisterImg from "@/assets/image/register.png";
 import { Color, SignInResponse } from "@/types";
 import { signInWithPopup } from "firebase/auth";
-import { loginAccount, signInWithGoogle } from "@/utils/api/api";
+import { loginAccount, signInWithGoogle } from "@/utils/api";
 import { loginSuccess } from "@/redux/userSlice";
 import { notification } from "@/utils/helper";
 import { useDispatch } from "react-redux";

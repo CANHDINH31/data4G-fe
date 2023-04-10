@@ -22,7 +22,7 @@ import { FaTimes } from "react-icons/fa";
 import AvatarImg from "@/assets/image/vietnam.png";
 import { KeyboardEvent } from "react";
 import { FcEditImage, FcLike } from "react-icons/fc";
-import { getListMenu } from "@/utils/api/api";
+import { getListMenu } from "@/utils/api";
 
 const WrapContent = styled(Paper)`
   height: 50px;

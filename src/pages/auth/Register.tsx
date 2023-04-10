@@ -12,7 +12,7 @@ import { Color } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
-import { registerAccount } from "@/utils/api/api";
+import { registerAccount } from "@/utils/api";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useEffect, useState } from "react";
 

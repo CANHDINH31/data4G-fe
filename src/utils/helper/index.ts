@@ -1,6 +1,6 @@
-import { getStructre } from "@/utils/api/api";
+import { getStructre } from "@/utils/api";
 import { toast } from "react-toastify";
-import { toggleFavourite } from "../api/api";
+import { toggleFavourite } from "../api";
 import React from "react";
 
 export const registerSMS = (title: string, tel: string): string => {

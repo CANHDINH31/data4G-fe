@@ -6,7 +6,7 @@ import LogoImage from "@/assets/image/top-header-logo.png";
 import { SiZalo } from "react-icons/si";
 import { BsFacebook } from "react-icons/bs";
 import { notification } from "@/utils/helper";
-import { getStructre } from "@/utils/api/api";
+import { getStructre } from "@/utils/api";
 
 const WrapContainer = styled.div`
   background-color: ${Color.BG_SECONDARY};

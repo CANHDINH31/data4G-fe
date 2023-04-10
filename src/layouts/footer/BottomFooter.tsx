@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GiPositionMarker } from "react-icons/gi";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getStructre } from "@/utils/api/api";
+import { getStructre } from "@/utils/api";
 import { notification } from "@/utils/helper";
 import { Link } from "react-router-dom";
 

@@ -35,7 +35,7 @@ import {
   getListService,
   searchService,
   updateService,
-} from "@/utils/api/api";
+} from "@/utils/api";
 import { notification } from "@/utils/helper";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({

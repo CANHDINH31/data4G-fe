@@ -1,5 +1,5 @@
 import { Color } from "@/types";
-import { getStructre, updateStructure } from "@/utils/api/api";
+import { getStructre, updateStructure } from "@/utils/api";
 import { notification } from "@/utils/helper";
 import { Box, Paper, TextField, Typography, Button, Grid } from "@mui/material";
 import { SetStateAction, useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 import { CategoryType, Color } from "@/types";
-import { getListCategory } from "@/utils/api/api";
+import { getListCategory } from "@/utils/api";
 import { notification } from "@/utils/helper";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";

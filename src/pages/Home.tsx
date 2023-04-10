@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import Introduce from "@/components/home/Introduce";
 import { Box, Container, Grid, useMediaQuery } from "@mui/material";
-import {
-  getCategoryBySlug,
-  getListCategory,
-  getUserInfo,
-} from "@/utils/api/api";
+import { getCategoryBySlug, getListCategory, getUserInfo } from "@/utils/api";
 import { CategoryType, RootState } from "@/types";
 import { useSelector } from "react-redux";
 import {

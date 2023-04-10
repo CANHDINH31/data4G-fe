@@ -20,7 +20,7 @@ import {
   handleToggleFavourite,
   notification,
 } from "@/utils/helper";
-import { searchService } from "@/utils/api/api";
+import { searchService } from "@/utils/api";
 import { useSelector } from "react-redux";
 
 const Search = () => {

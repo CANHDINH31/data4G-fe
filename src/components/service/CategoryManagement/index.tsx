@@ -7,7 +7,7 @@ import {
   deleteCategory,
   searchCategory,
   updateCategory,
-} from "@/utils/api/api";
+} from "@/utils/api";
 import { convertToSlug, notification } from "@/utils/helper";
 import SettingCategory from "./SettingCategory";
 import ListCategory from "./ListCategory";
