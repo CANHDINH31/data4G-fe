@@ -1,6 +1,7 @@
 import DialogModal from "@/components/common/DialogModal";
+import NotNull from "@/components/common/NotNull";
 import { CategoryType, ColorType, ServiceType } from "@/types";
-import { NOT_NULL, UPDATE_CATEGORY } from "@/utils/configs";
+import { UPDATE_CATEGORY } from "@/utils/configs";
 import {
   Box,
   FormControlLabel,
@@ -8,7 +9,6 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  Typography,
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
@@ -16,10 +16,10 @@ import { Controller, useForm } from "react-hook-form";
 import { AiOutlineDelete } from "react-icons/ai";
 
 type Props = {
-  isOpenEdit: any;
-  setIsOpenEdit: any;
-  handleEditCategory: any;
-  editCategory: any;
+  isOpenEdit: boolean;
+  setIsOpenEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  handleEditCategory: (data: CategoryType, listService: ServiceType[]) => void;
+  editCategory: CategoryType;
 };
 
 const EditCategory = ({
@@ -66,7 +66,7 @@ const EditCategory = ({
   ];
 
   const handleEditCategoryWithService = (data: CategoryType) => {
-    handleEditCategory(data, listService as ServiceType[]);
+    handleEditCategory(data as CategoryType, listService as ServiceType[]);
     setIsOpenEdit(false);
   };
 
@@ -102,15 +102,7 @@ const EditCategory = ({
           sx={{ minWidth: "25vw" }}
           {...register("title", { required: true })}
         />
-        {errors.title && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.title && <NotNull />}
       </Box>
       <Box mt={2}>
         <TextField
@@ -119,15 +111,7 @@ const EditCategory = ({
           size="small"
           {...register("name", { required: true })}
         />
-        {errors.name && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.name && <NotNull />}
       </Box>
       <Box mt={2}>
         <TextField
@@ -138,15 +122,7 @@ const EditCategory = ({
           {...register("position", { required: true })}
         />
 
-        {errors.position && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.position && <NotNull />}
       </Box>
 
       <Box mt={2}>

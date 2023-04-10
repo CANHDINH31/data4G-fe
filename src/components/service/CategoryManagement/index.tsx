@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { SubmitHandler } from "react-hook-form";
-import { CategoryType } from "@/types";
+import { CategoryType, ServiceType } from "@/types";
 import {
   createCategory,
   deleteCategory,
@@ -13,7 +13,8 @@ import SettingCategory from "./SettingCategory";
 import ListCategory from "./ListCategory";
 import AddCategory from "./AddCategory";
 import EditCategory from "./EditCategory";
-import DeleteCategory from "./DeleteCategory";
+import DeleteModal from "@/components/common/DeleteModal";
+import { DELETE_CATEGORY } from "@/utils/configs";
 
 const CategoryManagement = () => {
   const [isOpenDialogAdd, setIsOpenDialogAdd] = useState<boolean>(false);
@@ -58,9 +59,9 @@ const CategoryManagement = () => {
     }
   };
 
-  const handleEditCategory: SubmitHandler<CategoryType> = async (
-    data,
-    listService
+  const handleEditCategory = async (
+    data: CategoryType,
+    listService: ServiceType[]
   ) => {
     try {
       const res = await updateCategory(
@@ -167,7 +168,8 @@ const CategoryManagement = () => {
       />
 
       {/* DIALOG CONFIRM DELETE */}
-      <DeleteCategory
+      <DeleteModal
+        type={DELETE_CATEGORY}
         isOpen={isOpenConfirmDelete}
         setIsOpen={setIsOpenConfirmDelete}
         hanldeDeleteCategory={hanldeDeleteCategory}

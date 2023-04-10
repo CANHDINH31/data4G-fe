@@ -1,3 +1,4 @@
+import { ServiceType } from "@/types";
 import { API } from "./core";
 
 // SERVICE API
@@ -22,11 +23,7 @@ const searchService = async (title: string): Promise<any> => {
   }
 };
 
-const createService = async (payload: {
-  title: string;
-  price: string;
-  content: string;
-}): Promise<any> => {
+const createService = async (payload: ServiceType): Promise<any> => {
   try {
     const res = await API.post("/service", payload);
     return res;
@@ -44,10 +41,7 @@ const getListService = async (): Promise<any> => {
   }
 };
 
-const updateService = async (
-  id: string,
-  payload: { title: string; price: string; content: string }
-) => {
+const updateService = async (id: string, payload: ServiceType) => {
   try {
     const res = await API.put("/service/" + id, payload);
     return res;
