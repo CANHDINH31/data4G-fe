@@ -1,6 +1,7 @@
 import DialogModal from "@/components/common/DialogModal";
-import { CategoryType, ColorType } from "@/types";
-import { ADD_CATEGORY, NOT_NULL } from "@/utils/configs";
+import NotNull from "@/components/common/NotNull";
+import { CategoryType } from "@/types";
+import { ADD_CATEGORY } from "@/utils/configs";
 import {
   Box,
   FormControlLabel,
@@ -8,7 +9,6 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  Typography,
 } from "@mui/material";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
@@ -51,15 +51,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           sx={{ minWidth: "25vw" }}
           {...register("title", { required: true })}
         />
-        {errors.title && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.title && <NotNull />}
       </Box>
       <Box mt={2}>
         <TextField
@@ -68,15 +60,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           size="small"
           {...register("name", { required: true })}
         />
-        {errors.name && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.name && <NotNull />}
       </Box>
       <Box mt={2}>
         <TextField
@@ -87,15 +71,7 @@ const AddCategory = ({ isOpenAdd, setIsOpenAdd, handleAddCategory }: Props) => {
           {...register("position", { required: true })}
         />
 
-        {errors.position && (
-          <Typography
-            mt={2}
-            variant="subtitle2"
-            sx={{ color: `${ColorType.PRIMARY}` }}
-          >
-            {NOT_NULL}
-          </Typography>
-        )}
+        {errors.position && <NotNull />}
       </Box>
 
       <Box mt={2}>
