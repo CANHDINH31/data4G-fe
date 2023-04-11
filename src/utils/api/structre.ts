@@ -1,3 +1,4 @@
+import { StructreType } from "@/types";
 import { API } from "./core";
 
 const getStructre = async () => {
@@ -11,9 +12,7 @@ const getStructre = async () => {
 
 const updateStructure = async (
   id: string,
-  payload: {
-    phone: string;
-  }
+  payload: StructreType
 ): Promise<any> => {
   try {
     const res = await API.put("/structre/" + id, payload);

@@ -1,27 +1,16 @@
-import { ColorType } from "@/types";
-import { getStructre, updateStructure } from "@/utils/api";
+import { ColorType, StructreType } from "@/types";
+import { updateStructure } from "@/utils/api";
 import { NOT_NULL } from "@/utils/configs";
-import { notification } from "@/utils/helper";
+import { getInfoStruct, notification } from "@/utils/helper";
 import { Box, Paper, TextField, Typography, Button, Grid } from "@mui/material";
-import { SetStateAction, useEffect, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
-
-type StructreRespone = {
-  offerCheck: SetStateAction<string>;
-  registerSms: SetStateAction<string>;
-  registerLink: SetStateAction<string>;
-  zaloLink: SetStateAction<string>;
-  facebookLink: SetStateAction<string>;
-  takeCareGuest: SetStateAction<string>;
-  _id: string;
-};
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const StructureManagement = () => {
   const {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -31,51 +20,50 @@ const StructureManagement = () => {
   const [zaloLink, setZaloLink] = useState<string>("");
   const [facebookLink, setFacebookLink] = useState<string>("");
   const [takeCareGuest, setTakeCareGuest] = useState<string>("");
+  const [id, setId] = useState<string>("");
 
-  const handleUpdate = async (data: FieldValues) => {
+  const handleUpdate = async (data: StructreType) => {
     try {
-      const res = await updateStructure(
-        getValues("id"),
-        data as { phone: string }
-      );
-      handleUpdateField(res.data.data);
+      const res = await updateStructure(id, data);
       notification("success", res.data.message);
     } catch (error) {
       notification("system");
     }
   };
 
-  const handleUpdateField = (data: StructreRespone) => {
-    setOfferCheck(data.offerCheck);
-    setRegisterSms(data.registerSms);
-    setRegisterLink(data.registerLink);
-    setZaloLink(data.zaloLink);
-    setFacebookLink(data.facebookLink);
-    setTakeCareGuest(data.takeCareGuest);
-    setValue("offerCheck", data.offerCheck);
-    setValue("registerSms", data.registerSms);
-    setValue("registerLink", data.registerLink);
-    setValue("zaloLink", data.zaloLink);
-    setValue("facebookLink", data.facebookLink);
-    setValue("takeCareGuest", data.takeCareGuest);
-    setValue("id", data._id);
+  const handleUpdateField = () => {
+    setValue("offerCheck", offerCheck);
+    setValue("registerSms", registerSms);
+    setValue("registerLink", registerLink);
+    setValue("zaloLink", zaloLink);
+    setValue("facebookLink", facebookLink);
+    setValue("takeCareGuest", takeCareGuest);
+    setValue("id", id);
+  };
+
+  const fetchDataStruct = async () => {
+    try {
+      await getInfoStruct(
+        setRegisterSms,
+        setRegisterLink,
+        setOfferCheck,
+        setTakeCareGuest,
+        setZaloLink,
+        setFacebookLink,
+        setId
+      );
+    } catch (error) {
+      notification("system");
+    }
   };
 
   useEffect(() => {
-    const getInfoStructre = async () => {
-      try {
-        const res = (await getStructre()) as {
-          data: {
-            data: StructreRespone;
-          };
-        };
-        handleUpdateField(res.data.data);
-      } catch (error) {
-        notification("system");
-      }
-    };
-    getInfoStructre();
+    fetchDataStruct();
   }, []);
+
+  useEffect(() => {
+    handleUpdateField();
+  }, [fetchDataStruct]);
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center">

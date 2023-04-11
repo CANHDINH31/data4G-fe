@@ -2,6 +2,7 @@ import { getStructre } from "@/utils/api";
 import { toast } from "react-toastify";
 import { toggleFavourite } from "../api";
 import React from "react";
+import { StructreType } from "@/types";
 
 export const registerSMS = (title: string, tel: string): string => {
   return `sms:9123&body=${title.toLocaleUpperCase()} ${tel}`;
@@ -60,23 +61,24 @@ export const getInfoStruct = async (
   setRegisterSms?: React.Dispatch<React.SetStateAction<string>>,
   setRegisterLink?: React.Dispatch<React.SetStateAction<string>>,
   setOfferCheck?: React.Dispatch<React.SetStateAction<string>>,
-  setTakeCareGuest?: React.Dispatch<React.SetStateAction<string>>
+  setTakeCareGuest?: React.Dispatch<React.SetStateAction<string>>,
+  setZaloLink?: React.Dispatch<React.SetStateAction<string>>,
+  setFacebookLink?: React.Dispatch<React.SetStateAction<string>>,
+  setId?: React.Dispatch<React.SetStateAction<string>>
 ) => {
   try {
     const res = (await getStructre()) as {
       data: {
-        data: {
-          registerSms: string;
-          registerLink: string;
-          offerCheck: string;
-          takeCareGuest: string;
-        };
+        data: StructreType;
       };
     };
-    setRegisterSms && setRegisterSms(res.data.data.registerSms);
-    setRegisterLink && setRegisterLink(res.data.data.registerLink);
-    setOfferCheck && setOfferCheck(res.data.data.offerCheck);
-    setTakeCareGuest && setTakeCareGuest(res.data.data.takeCareGuest);
+    setRegisterSms && setRegisterSms(res.data.data.registerSms as string);
+    setRegisterLink && setRegisterLink(res.data.data.registerLink as string);
+    setOfferCheck && setOfferCheck(res.data.data.offerCheck as string);
+    setTakeCareGuest && setTakeCareGuest(res.data.data.takeCareGuest as string);
+    setZaloLink && setZaloLink(res.data.data.zaloLink as string);
+    setFacebookLink && setFacebookLink(res.data.data.facebookLink as string);
+    setId && setId(res.data.data._id as string);
   } catch (error) {
     notification("system");
   }
