@@ -12,9 +12,9 @@ const signInWithGoogle = async (payload: GoogleAuthPayloadType) => {
 };
 
 const registerAccount = async (payload: {
-  name: string;
-  password: string;
-  email: string;
+  name?: string;
+  password?: string;
+  email?: string;
   phone?: string;
 }) => {
   try {
@@ -25,7 +25,7 @@ const registerAccount = async (payload: {
   }
 };
 
-const loginAccount = async (payload: { password: string; email: string }) => {
+const loginAccount = async (payload: { passwor?: string; email?: string }) => {
   try {
     const res = await API.post("/auth/login", payload);
     return res;
