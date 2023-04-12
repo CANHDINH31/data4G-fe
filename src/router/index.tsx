@@ -7,6 +7,7 @@ import Like from "@/pages/Like";
 import NotFound from "@/pages/NotFound";
 import UpdateInfo from "@/pages/auth/UpdateInfo";
 import Search from "@/pages/Search";
+import Auth from "@/pages/auth";
 
 interface Router {
   path: string;
@@ -18,8 +19,8 @@ const listRouter: Router[] = [
   { path: "/data/:slug", component: <Home /> },
   { path: "/search", component: <Search /> },
   { path: "/service/:id?", component: <Service /> },
-  { path: "/register", component: <Register /> },
-  { path: "/login", component: <Login /> },
+  { path: "/register", component: <Auth /> },
+  { path: "/login", component: <Auth /> },
   { path: "/like", component: <Like /> },
   { path: "/update-info", component: <UpdateInfo /> },
   { path: "*", component: <NotFound /> },
