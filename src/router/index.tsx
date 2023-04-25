@@ -1,8 +1,6 @@
 import { Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Service from "@/pages/Service";
-import Register from "@/pages/auth/Register";
-import Login from "@/pages/auth/Login";
 import Like from "@/pages/Like";
 import NotFound from "@/pages/NotFound";
 import UpdateInfo from "@/pages/auth/UpdateInfo";

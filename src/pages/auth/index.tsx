@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import RegisterImg from "@/assets/image/register.png";
-import { ColorType } from "@/types";
+import { ColorType, ErrorType } from "@/types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { notification } from "@/utils/helper";
@@ -16,7 +16,7 @@ import { loginAccount, registerAccount } from "@/utils/api";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { NOT_NULL } from "@/utils/configs";
-import { signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { loginSuccess } from "@/redux/userSlice";
 import { useDispatch } from "react-redux";
 import { auth, provider } from "@/utils/firebase";
@@ -53,25 +53,31 @@ const Register = () => {
 
   const handleAuth = async (data: FieldValues) => {
     try {
-      const res = (
-        isRegister ? await registerAccount(data) : await loginAccount(data)
-      ) as {
-        data: {
-          status: number;
-          message: string;
-        };
-      };
-      if (res.data.status === 200) {
-        notification("success", res.data.message);
-        reset();
-        isRegister ? navigate("/login") : navigate("/");
-        !isRegister && dispatch(loginSuccess(res.data));
-      } else {
-        notification("error", res.data.message);
-      }
-    } catch (error) {
-      console.log(error);
-      notification("system");
+      // const res = (
+      //   isRegister ? await registerAccount(data) : await loginAccount(data)
+      // ) as {
+      //   data: {
+      //     status: number;
+      //     message: string;
+      //   };
+      // };
+      // if (res.data.status === 200) {
+      //   notification("success", res.data.message);
+      //   reset();
+      //   isRegister ? navigate("/login") : navigate("/");
+      //   !isRegister && dispatch(loginSuccess(res.data));
+      // } else {
+      //   notification("error", res.data.message);
+      // }
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = res.user;
+      const token = await user.getIdToken();
+    } catch (error: any) {
+      notification("error", error.message);
     }
   };
 
@@ -155,6 +161,10 @@ const Register = () => {
                   fullWidth
                   {...register("password", {
                     required: NOT_NULL,
+                    minLength: {
+                      value: 6,
+                      message: "Mật khẩu phải có ít nhất 6 kí tự",
+                    },
                   })}
                   type={!isShowPassword ? "password" : "text"}
                   InputProps={{

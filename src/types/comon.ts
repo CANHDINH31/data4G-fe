@@ -8,3 +8,7 @@ export type StructreType = {
   takeCareGuest?: string;
   _id?: string;
 };
+
+export type ErrorType = {
+  message: string;
+};
